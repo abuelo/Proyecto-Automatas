@@ -131,6 +131,9 @@
 %
 \ifCLASSINFOpdf
   \usepackage[pdftex]{graphicx}
+  
+  %\usepackage[colorlinks]{hyperref}
+  \usepackage[colorinlistoftodos]{todonotes}
   % declare the path(s) where your graphic files are
   \graphicspath{{./images/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -815,7 +818,7 @@ en $b_t$, coeficiente viscoso del mecanismo de traslación.
     \intertext{Donde:}
     M_t &= m_t + \dfrac{J_{w}+J_{m} i^2}{R_{w}^2} \\
     F_t &= \dfrac{T_{m} i}{R_{w}} \\
-    b_t &= \dfrac{b_{eqm} i^2}{R_{w}}
+    b_t &= \dfrac{b_{eqm} i^2}{{R_{w}}^2}
 \end{align}
 Siendo $T_{m}$, el torque motor, nuestra variable controlada en el sistema.
 
@@ -832,7 +835,7 @@ en $b_h$ coeficiente viscoso del mecanismo de izaje.
     \intertext{Donde:}
     M_h &= \dfrac{J_{d}+J_{m} i^2}{R_{d}^2} \\
     F_h &= \dfrac{T_{m} i}{R_{d}} \\
-    b_h &= \dfrac{b_{eqm} i^2}{R_{d}}
+    b_h &= \dfrac{b_{eqm} i^2}{{R_{d}}^2} &= 
 \end{align}
 Siendo $T_{m}$, el torque motor, nuestra variable controlada en el sistema.
 En la Fig.\ref{fig:fisica} se muestra el modelo en diagrama de bloques en Simulink.
@@ -844,6 +847,7 @@ En la Fig.\ref{fig:fisica} se muestra el modelo en diagrama de bloques en Simuli
 \end{figure}
 
 \subsubsection{Cable de Izaje}
+\label{subsec:cable}
 Un cable de acero considerado equivalente elástico sin masa
 propia es el elemento de unión entre el trolley y la carga
 suspendida. Considerando la ley de Hooke y 
@@ -876,6 +880,109 @@ su peso, el modelo matemático es el siguiente:
     m_l \ddot{y_l}(t) &=  F_w(t) \cos \theta(t) - m_l g 
 \end{align}
 
+\subsection{Condiciones iniciales y  paŕametros del sistema}
+
+Para poder comenzar a realizar los controladores se debe conocer cuales serán las condiciones
+iniciales de nuestro modelo.
+
+\begin{itemize}
+ \item Profundidad del barco: $prof \_ barco$
+ 
+ Se pensó en esta variable teniendo en cuenta de que los barcos que debemos cargar pueden
+ presentar dimensiones diferentes.
+ \item Altura del container: $hContainer$
+ 
+ Esta variable sirve para saber hasta donde hay que descender la carga, dependiendo del 
+ número de contariners dejados.
+ \item Ancho del container: $wContainer$
+ 
+ Esta variable sirve para saber hasta donde hay que trasladar la carga, dependiendo del 
+ número de columna de contariners a la que hay que ir.
+ 
+ \item Posición inicial de la carga: $yl0 =  hContainer + 1$
+ 
+ La posición inicial de la carga se decidió fuera de la altura del container más un metro.
+ \item Altura máxima de la carga: $yl\_max$
+ 
+ Es la altura máxima a la que la carga puede subir. 
+ \item Altura mínima de la carga: $yl\_min = prof\_barco - 1.3$
+ 
+ Es la posición mínima que puede tener la carga, esta posición es dentro de la cubierta
+ del barco
+ \item Altura de la columna: $yt0 = 45 $
+ 
+ La viga esta ubicada 45 metros sobre del nivel del puerto.
+ \item Número de columnas: $numColumna$
+ 
+ Esta variable tiene como objetivo poder variar el número de columnas de contenedores
+ posibles en el barco. El objetivo es poder aceptar diferentes barcos.
+ \item Número de containers por columna: $NumContainter = [0 \, 0 \, 0 \, 0 \, 0]$
+ 
+ El objetivo de este vector es guardar el número de containter existente en cada columna.
+ Esto nos permite saber hasta donde descender debido a que conocemos el alto de los 
+ contenedores evitando de esta manera colisiones.
+ \item Posición inicial del carro: $xt\_h = -15.0$
+ 
+ El carro comienza quince metros dentro del puerto.
+ \item Longitud inicial de cable desenrrollado: $lh\_h = yt0-yl0- \dfrac{mL \, g}{Kw} $ 
+ 
+ Para asegurar una posición inicial de la carga el cable debe estar desenrrollado una 
+ constante que tiene en cuenta cuanto el cable se necesita estirar para ejercer una fuerza
+ tal que contrareste el peso de la carga. Esta expresión fue obtenida a partir de las 
+ expresiones presentadas en la sección \ref{subsec:cable}. Esto nos asegura que el cable 
+ en el instante inicial ya esta precargado y no hay movimiento del cable en la dirección
+ $y$.
+ 
+ \item Longitud mínima de cable desenrrollado: $lh\_min = yt0 - yl\_max-\dfrac{mL \, g}{Kw}$
+ 
+ Para asegurar que la carga no va a superar su posición máxima definida en la variable
+ $yl_max$, debemos tener en cuenta al momento de enrollar el cable cuanto necesito que este
+ se estire para contrarestar el peso de la carga.
+ 
+ \item Posición final del carro:$xt\_g= (numColumna + 0.5) \, wContainer$
+ 
+ La posición final del carro depende del numero de columna  a la que deba ir la carga.
+ \item Longitud máxima de cable desenrrollado:
+ $lh\_g= yt0 + yl\_min -  (hContainer \, numContainer \, (numColumna)) - \dfrac{mL \, g}{Kw}$
+ 
+ Para dejar la carga cerca del lugar deseado en donde el operador toma el mando de la
+ grúa para proceder con la descarga debemos tener en cuenta el número de containers que
+ se encuentran depositados y cuanto se va a estirar el cable.
+ 
+ 
+ \todo{Fh0 : Fuerza de precarga}
+\end{itemize}
+
+\subsection{Limitador de velocidad y aceleración}
+
+Una de las imposiciónes del trabajo es un límite en la velocidad y la aceleración como se
+mecionó en el capítulo \ref{sec:fisica}.
+
+Para poder asegurar no superar los límites de velocidad la consigna de posición no puede 
+ser un salto en escalón y su razón de cambio no puede superar los valores dados como 
+objetivo. 
+Por otro lado para cumplir con los límites de velocidad impuestos la consigna de velocidad 
+no puede ser un salto en escalón y su razón de cambio debe estar limitada.
+
+En la figura \ref{fig:bloque_consigna_pos} se puede observar el bloque en Matlab-Simulink
+que nos entrega una consigna de posición con las características necesarias para no
+sueprar los límites de velocidad y aceleración.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{bloque_consigna_posicion.jpeg}
+  \caption{Bloque Matlab-Simulink para la consigna de posición.}
+  \label{fig:bloque_consigna_pos} 
+\end{figure}
+
+La consigna de posición entregada al controlador, resultado del bloaque de Matlab 
+se observa en la figura \ref{fig:consigna_pos}.
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consigna_posicion.jpeg}
+  \caption{Gráfico de la consigna de posicíon en funcion del tiempo}
+  \label{fig:consigna_pos}
+\end{figure}
 
 \subsection{Controladores de tipo PID}
 Luego de analizar el modelo físico se procedió a realizar un controlador por cada motor.
@@ -1067,7 +1174,6 @@ entregaron los resultados que se muestran a continuación:
 \end{figure}
 
 
-
 \subsection{Parada de emergencia}
 Sistemas de gran envergadura presentan frenos mecánicos para no estar forzando el motor
 y tener una mayor seguridad. Se pensó en este trabajo que en una situación de riesgo
@@ -1110,7 +1216,13 @@ llegue al modulador de torque $G_t$ debe ser igual igual a esta. Ver Fig.
   \label{fig:testVel}
 \end{figure}
 
+Observando las soluciones propuestas y los resultados obtenidos se descubrió que esta 
+retroalimentación podía hacerse directamente en la máquina de estados. Para ello se debe
+enviar como consigna de posición la posición actual al momento de entrar al estado 
+emergencia.
+Esto se explicará en el capítulo \ref{sec:MaqEstados}.
 
+\todo{imagen}
 
 \subsection{Análisis en tiempo discreto}
 Hasta este momento hemos presentado nuestro trabajo en el controlador en tiempo continuo.
@@ -1201,7 +1313,6 @@ Según Matlab el bloque retiene su entrada durante un período de tiempo especif
 Con estos dos elementos ademas de la transformación de las acciones proporcionales, 
 integrales y derivativas se realizó el controlador en tiempo discreto.
 
-
 \subsection{Máquina de estados finitos}
 \label{sec:MaqEstados}
 Una máquina de estados puede describirse como el modelo de comportamiento de un sistema
@@ -1244,7 +1355,7 @@ automático, este responde de la siguiente manera:
  \item $Wait$: Luego de haber llegado al destino esperamos la señal del 
  operador $Manual$ para dar paso al control manual del sistema.
 \end{itemize}
-
+\todo{Es necesario q escribamos los margenes de error?}
 
 \begin{figure*}[!t]
   \centering 
