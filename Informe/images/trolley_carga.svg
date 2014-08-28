@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="294.53619"
+   height="387.77325"
+   id="svg3054"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="trolley_carga.svg"
+   inkscape:export-filename="/home/alvaro/Documents/PPS/trolley_carga.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3056">
+    <marker
+       style="overflow:visible"
+       id="DistanceEnd"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DistanceEnd">
+      <g
+         id="g2301">
+        <path
+           style="fill:none;stroke:#ffffff;stroke-width:1.15;stroke-linecap:square"
+           d="M 0,0 L -2,0"
+           id="path2316" />
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 L -13,4 L -9,0 -13,-4 L 0,0 z "
+           id="path2312" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 L 0,40"
+           id="path2314" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path4090"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceStart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DistanceStart">
+      <g
+         id="g2300">
+        <path
+           style="fill:none;stroke:#ffffff;stroke-width:1.14999998;stroke-linecap:square"
+           d="M 0,0 2,0"
+           id="path2306"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 13,4 9,0 13,-4 0,0 z"
+           id="path2302"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 0,40"
+           id="path2304"
+           inkscape:connector-curvature="0" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path4108"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceStart-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DistanceStart">
+      <g
+         id="g2300-7">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#ffffff;stroke-width:1.14999998;stroke-linecap:square"
+           d="M 0,0 2,0"
+           id="path2306-1" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 13,4 9,0 13,-4 0,0 z"
+           id="path2302-9" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 0,40"
+           id="path2304-0" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4090-5"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-17"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4090-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4108-8"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(1.1,0,0,1.1,1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart-2"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4108-9"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(1.1,0,0,1.1,1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart-4"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4108-3"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(1.1,0,0,1.1,1.1,0)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceStart-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DistanceStart">
+      <g
+         id="g2300-2">
+        <path
+           style="fill:none;stroke:#ffffff;stroke-width:1.14999998;stroke-linecap:square"
+           d="M 0,0 2,0"
+           id="path2306-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 13,4 9,0 13,-4 0,0 z"
+           id="path2302-6"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 0,40"
+           id="path2304-8"
+           inkscape:connector-curvature="0" />
+      </g>
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="389.02764"
+     inkscape:cy="158.07615"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1600"
+     inkscape:window-height="853"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3059">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-10.38,-435.82327)">
+    <g
+       id="g3898"
+       transform="matrix(0.40707966,0,0,0.40707966,36.535339,313.8152)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="529.80389"
+         x="183.20418"
+         height="60.542213"
+         width="202.53427"
+         id="rect3073"
+         style="fill:#000080;fill-opacity:1;stroke:#000000;stroke-width:1.06694436;stroke-opacity:1" />
+      <path
+         transform="translate(91.071429,8.2142857)"
+         d="m 154.55333,582.64124 c 0,12.83151 -10.40199,23.2335 -23.23351,23.2335 -12.83151,0 -23.2335,-10.40199 -23.2335,-23.2335 0,-12.83152 10.40199,-23.23351 23.2335,-23.23351 12.83152,0 23.23351,10.40199 23.23351,23.23351 z"
+         sodipodi:ry="23.233509"
+         sodipodi:rx="23.233509"
+         sodipodi:cy="582.64124"
+         sodipodi:cx="131.31982"
+         id="path3075"
+         style="fill:#0000fe;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         d="m 154.55333,582.64124 c 0,12.83151 -10.40199,23.2335 -23.23351,23.2335 -12.83151,0 -23.2335,-10.40199 -23.2335,-23.2335 0,-12.83152 10.40199,-23.23351 23.2335,-23.23351 12.83152,0 23.23351,10.40199 23.23351,23.23351 z"
+         sodipodi:ry="23.233509"
+         sodipodi:rx="23.233509"
+         sodipodi:cy="582.64124"
+         sodipodi:cx="131.31982"
+         id="path3075-4"
+         style="fill:#0000ff;fill-opacity:1;stroke:none"
+         sodipodi:type="arc"
+         transform="translate(223.80572,8.0812344)" />
+      <rect
+         y="612.9458"
+         x="61.619305"
+         height="6.0609155"
+         width="456.58896"
+         id="rect3101"
+         style="fill:#000000;fill-opacity:1;stroke:none" />
+      <g
+         transform="translate(111.11678,-11.111678)"
+         id="g3891">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:none"
+           id="rect3106"
+           width="142.94324"
+           height="59.90464"
+           x="206.2321"
+           y="846.56329" />
+        <rect
+           style="fill:#eeeeff;fill-opacity:1;stroke:#000000;stroke-width:0.79667431;stroke-opacity:0.9958678"
+           id="rect3108"
+           width="43.45718"
+           height="12.876202"
+           x="255.97513"
+           y="833.25372" />
+        <rect
+           style="fill:#000000;fill-opacity:1;stroke:none"
+           id="rect3110"
+           width="18.834229"
+           height="9.4171143"
+           x="268.28662"
+           y="823.86884" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3896"
+         d="M 289.1002,590.18174 389.19851,813.78872"
+         style="fill:none;stroke:#000000;stroke-width:0.99133855px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart)"
+       d="m 106.24815,539.54027 -28.504739,0"
+       id="path3909"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.72813797px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DistanceStart)"
+       d="m 195.80714,710.93062 -132.738368,0"
+       id="path3911-4-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.39241791px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="m 303.71999,792.75298 -254.398052,0"
+       id="path3911-4-0-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.65676475px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DistanceStart)"
+       d="m 242.43661,667.07225 0,122.00043"
+       id="path3911-4-3-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.42684925px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DistanceStart)"
+       d="m 154.7917,586.58065 -91.661927,0"
+       id="path3911-4-0-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       x="83.842659"
+       y="600.82397"
+       id="text5134"><tspan
+         sodipodi:role="line"
+         id="tspan5136"
+         x="83.842659"
+         y="600.82397" /></text>
+    <g
+       id="g5146"
+       transform="matrix(0.38267414,0,0,0.38267414,50.073975,365.56749)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5138"
+         y="616.98645"
+         x="115.15739"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="616.98645"
+           x="115.15739"
+           id="tspan5140"
+           sodipodi:role="line">X</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144"
+           sodipodi:role="line">t</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="118.56153"
+       y="729.22461"
+       id="text5138-0"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5"
+         x="118.56153"
+         y="729.22461">X</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="126.29272"
+       y="731.54395"
+       id="text5142-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7"
+         x="126.29272"
+         y="731.54395">l</tspan></text>
+    <g
+       id="g5146-5"
+       transform="matrix(0.38267414,0,0,0.38267414,200.86437,505.53753)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5138-6"
+         y="616.98645"
+         x="115.15739"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="616.98645"
+           x="115.15739"
+           id="tspan5140-1"
+           sodipodi:role="line">Y</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142-0"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144-8"
+           sodipodi:role="line">l</tspan></text>
+    </g>
+    <g
+       id="g5146-2"
+       transform="matrix(0.38267414,0,0,0.38267414,-4.2981191,330.48528)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5138-8"
+         y="616.98645"
+         x="115.15739"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="616.98645"
+           x="115.15739"
+           id="tspan5140-6"
+           sodipodi:role="line">Y</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142-1"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144-4"
+           sodipodi:role="line">t</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.39241791px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="m 61.344459,437.01948 0,254.3981"
+       id="path3911-4-0-3-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.39199996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none"
+       d="m 61.344459,665.31395 0,138.77164"
+       id="path3911-4-0-3-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g5146-2-9"
+       transform="matrix(0.23182498,0,0,0.23182498,233.37664,664.157)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142-1-1"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144-4-0"
+           sodipodi:role="line" /></text>
+      <text
+         xml:space="preserve"
+         style="font-size:104.52757263px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         x="-87.96875"
+         y="673.33331"
+         id="text5888"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan5890"
+           x="-87.96875"
+           y="673.33331">X[m]</tspan></text>
+    </g>
+    <g
+       id="g5146-2-9-7"
+       transform="matrix(0.38267414,0,0,0.38267414,48.026225,257.29494)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142-1-1-5"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144-4-0-5"
+           sodipodi:role="line" /></text>
+      <text
+         xml:space="preserve"
+         style="font-size:58.56407547px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         x="-105.93148"
+         y="638.03333"
+         id="text5888-5"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan5890-6"
+           x="-105.93148"
+           y="638.03333">Y[m]</tspan></text>
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.82926655;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path5928"
+       sodipodi:cx="139.90613"
+       sodipodi:cy="636.43188"
+       sodipodi:rx="11.616755"
+       sodipodi:ry="12.879445"
+       d="m 151.16068,639.62293 c -1.58959,6.89134 -7.91704,11.0492 -14.13275,9.28683 -3.47822,-0.9862 -6.34974,-3.70001 -7.77871,-7.35152"
+       sodipodi:start="0.25037053"
+       sodipodi:end="2.7322286"
+       sodipodi:open="true"
+       transform="matrix(0.53634648,0,0,0.716296,85.868174,123.90977)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="162.63457"
+       y="605.11713"
+       id="text5932"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5934"
+         x="162.63457"
+         y="605.11713">θ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="162.63457"
+       y="598.55115"
+       id="text5936"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5938"
+         x="162.63457"
+         y="598.55115">θ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="131.42857"
+       y="948.07648"
+       id="text5940"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5942"
+         x="131.42857"
+         y="948.07648">θ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold Italic"
+       x="92.85714"
+       y="919.50507"
+       id="text5944"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5946"
+         x="92.85714"
+         y="919.50507">θ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="135.71429"
+       y="959.50507"
+       id="text5948"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5950"
+         x="135.71429"
+         y="959.50507">θ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="160"
+       y="922.36218"
+       id="text5952"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5954"
+         x="160"
+         y="922.36218">θ</tspan></text>
+    <image
+       y="593.00507"
+       x="155.64285"
+       id="image5964"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAA1CAIAAABX44V8AAAAA3NCSVQICAjb4U/gAAAEgElEQVRY he1YTUgqbRQeRQcnyuJmJv1QIWZlf5AtCkuC6BcipBa2taBWWhBZm1YRLZJo16JACCGiWhRBEC6i QMiCFhalQmjloh91tFK0mW/xcee+TOPMNNePvkXPqseec87jzJnzHoeH4zj0reB/b/kfBxAEQZDg b4IfHh62t7cdDofb7Q6FQgiCyGQyjUaj0+mqqqrYZsE5weVy6XQ6Pp/6EvL5fIPBEI1G2aT6soNE IjE7OysQ/Ll4paWlIyMj09PTer0+KyuL+Ly1tfX19TXNDlAUbW9vJ2rk5ORYrdaPjw9C4Pf7FQoF IZicnEynAxRF1Wo1kb2oqOj6+vqz7OjoiNAIhUK/358eB4lEAvz22dnZl5eXqcRyuZxQLiwspMeB 2WwGe21jY4NGrNfrCWVLS0saHJycnPB4PCJpT08PvX5qaooQi8ViejHzRMJx3Gg04r+PDxiGl5aW 6EMyMjKIv1EUDQQCNGJmB1ar1el0EnR4eBjsdkrE43GQhkIh7g6i0ejMzMwfNZ8/MTFBHwJB0Pv7 O0gjkQh3B2tra+A17O/vB/s8FZ6fn0GK0y4ADA5WVlZAOjo6ylgegqCHhweQIghCp6bpUnC2QBAk k8mSySSbZ6eyshIMpB9KdA6GhobARCaTiU35ZDIJwzARxePxYrEYFwdvb28ikQh04HA42Dhwu91g lFQqpden7AO73R6LxQgqkUgaGxvpbudvuFwukJaVldHrUzrY398HaUdHR6ptgISzszOQlpeXp8dB d3c3m/IQBIHjC4Kg6upqej0Pp3pYb25ulEol+IlcLie1RSp4PB5wJtrt9ra2NroAyu5YX19nU4wR fD4fRVEunUi6l5yhVCrBvY0S1LsyycH8/PzAwACbkuPj43t7ewRtbm5mjvl8WTAME4vFoMbpdLKZ BBiG5efng4FbW1uMURQO7u7uwCxCoTAej7NxQLpyMAxHIhHGKIo+8Hq9IK2oqACnLA0ODg5AqtVq MzMzGaMoHPh8PpCSHksa7OzsgLSvr49NFIUD0tnK0oHH4zk9PSWoSCQiHWxfcPD4+AjSkpISNols NhtIBwcHf/36xdFBOBwGaUFBAWMW/NMQGxsbY1Oe2gFpz5TJZIxZdnd3wUO5rq6uqamJuwNS57Pp 58XFRZDOzc2xLE/tgDRHGbY8CDo+Pgb3uc7Ozt7e3r9ykJeXB9JkMkkTj2GY0WgkqEAgsFgs7MtT O6ipqQFpMBikiV9dXT0/PyeoyWT6wtuTf/F5TAYCAfBXos1mSzVQvV4veIKo1WqW8xsE9X6g1WqJ vAaDgVITDAZVKhUhKy4uZnxV8AUHm5ubRGoEQW5vb0mC+/v7hoYGQlNYWHh1dcWhfEoHOI53dXUR BRQKxeHhIYZhOI6/vLwsLy/n5uYS/62vr/f5fNzK0zkIh8MajQbsGARBpFIpuDHDMGw2mznce1YO cByPx+MWi4VyKkulUqPR+PnucAD1rkzCxcWFy+V6enrCcVwikdTW1qpUKpY/HxjBysF/iu9/r/zj 4MfB/8PBP076/aMJac7DAAAAAElFTkSuQmCC "
+       height="18.714285"
+       width="15.183289"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="76.756615"
+       y="530.79974"
+       id="text5138-0-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5-4"
+         x="76.756615"
+         y="530.79974">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="84.487801"
+       y="533.11908"
+       id="text5142-7-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7-9"
+         x="84.487801"
+         y="533.11908">t</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart)"
+       d="m 182.5636,607.23783 11.00371,26.29522"
+       id="path3909-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="198.04208"
+       y="622.13312"
+       id="text5138-0-2-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5-4-2"
+         x="198.04208"
+         y="622.13312">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="205.77327"
+       y="624.45245"
+       id="text5142-7-2-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7-9-3"
+         x="205.77327"
+         y="624.45245">w</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="146.4046"
+       y="519.53448"
+       id="text5138-0-2-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5-4-9"
+         x="146.4046"
+         y="519.53448">m</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="158.06436"
+       y="523.10382"
+       id="text5142-7-2-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7-9-7"
+         x="158.06436"
+         y="523.10382">t</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="137.70819"
+       y="668.15173"
+       id="text5138-0-2-3-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5-4-9-7"
+         x="137.70819"
+         y="668.15173">m</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="149.36795"
+       y="671.72107"
+       id="text5142-7-2-1-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7-9-7-9"
+         x="149.36795"
+         y="671.72107">l</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart)"
+       d="m 195.64034,696.16782 0,-28.50473"
+       id="path3909-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="199.94945"
+       y="692.22089"
+       id="text5138-0-2-3-1-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5140-5-4-9-7-3"
+         x="199.94945"
+         y="692.22089">m  g</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.30696583px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+       x="211.60921"
+       y="695.79022"
+       id="text5142-7-2-1-2-0"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5144-7-9-7-9-8"
+         x="211.60921"
+         y="695.79022">l</tspan></text>
+    <g
+       id="g5146-5-1"
+       transform="matrix(0.38267414,0,0,0.38267414,131.4285,356.64361)"
+       inkscape:export-filename="/home/alvaro/Documents/Automatas/PF_Automatas/Informe/images/trolley_carga.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5138-6-5"
+         y="616.98645"
+         x="115.15739"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="616.98645"
+           x="115.15739"
+           id="tspan5140-1-7"
+           sodipodi:role="line">l</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5142-0-6"
+         y="623.04736"
+         x="135.36044"
+         style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Asap;-inkscape-font-specification:Sans Italic"
+         xml:space="preserve"><tspan
+           y="623.04736"
+           x="135.36044"
+           id="tspan5144-8-7"
+           sodipodi:role="line" /></text>
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3105"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Asap;font-style:italic;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Sans Italic;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion3107"><rect
+           id="rect3109"
+           width="342.14285"
+           height="400.71429"
+           x="-14.285714"
+           y="4.9161115" /></flowRegion><flowPara
+         id="flowPara3111"></flowPara></flowRoot>  </g>
+</svg>

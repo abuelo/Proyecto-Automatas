@@ -1,0 +1,296 @@
+
+INFORME PROYECTO INTEGRADOR
+
+Introducción
+
+Poder trasladar grandes elementos de un lugar a otro es un gran problema de 
+control, el desafío que implica realizar el trabajo de manera rápida y segura
+para los operarios y la carga requiere de un gran esfuerzo por parte de los diseñadores
+para poder tener en cuenta todos los escenarios que se puede presentar.
+
+En este proyecto integrador el sistema a controlar debe ser capaz de mover una carga
+desde la base del muelle hasta su correcta hubicación dentro del barco. La operación
+del sistema debe ser hibrida (manual/automática) siendo el operario el encargado de
+las acciones de tomar y dejar la carga.
+Para poder realizar el movimiento se cuenta con accionamientos electro-mecánicos 
+genéricos de cuatro cuadrantes.
+
+Se decidió dividir el problema en dos grandes partes, por un lado un controlador 
+global, resuelto como una máquina de estados finitos y por otro lado un controlador
+para cada accionamiento. El objetivo de esta divición es plantear diferentes soluciones
+a cada parte del problema global, asi la complejidad de las mismas disminuye 
+significativamente fcilitando el analisis de los diferentes casos que se pueden 
+presentar.
+
+A continuación se presenta el esquema del informe:
+
+\begin{itemize}
+
+ \item Analisis del modelo físico.
+
+ \item Controladores de tipo PID para cada accionamiento electro mecánico.
+
+ \item Sistema de control de parada.
+
+ \item Máquina de estados finitos.
+ 
+ \item Presentación de resultados.
+\end{itemize}
+
+Desarrollo
+
++ Modelo Físico
+
++ Controladores de tipo PID
+
+Luego de analizar el modelo físico se procedio a realizar un controlador por cada motor.
+Debemos ser capaces de conducir la carga hasta una posición, si bien la acción de 
+tomar la carga y dejar la misma es realizada de manera manual, es necesario que de manera
+automática la carga llegue a la posición deseada. 
+
+Como se explicará en las próximas secciones el controlador supervisor global enviará
+una consigna de posición a la cual debe llegar nuestro actuador.
+
+En una primera versión del trabajo este controlador supervisor enviaba una consigna de 
+velocidad, la cual era seguida de acuerdo a un bucle de control PID. Entre las ventajas
+que encontramos en esta solución se encontraba una parada de emergencia sencilla, debido
+a que era suficiente con enviar una consigna de velocidad cero. Sin embargo luego
+de analizar aquellos resultados se decidió enviar desde el supervisor consignas de 
+posición, las cuales son logradas a través de un controlador de tipo PID. Se decidio esto
+luego de analizar otros metodos.
+
+La acción de control es el resultado de la suma de una ganancia proporcional multiplicada
+por el error, una ganancia integral multiplicada por la integral del error y una ganancia
+derivativa multiplicada por la derivada del mismo.
+
+Se demostrará el camino seguido para obtener el valor de las ganancias para uno de los
+motores dado que el camino seguido es el mismo en ambos casos.Para poder obtener este
+controlador se opero de la siguiente manera:
+
+*Analisis del sistema
+
+A partir del modelo físico descripto en el capitulo 1
+
+\begin{align}
+  J_m \, \dot{\omega (t)} = T_m - T_l - b \,{\omega}(t)\\
+  \dot{\theta} = {\omega} (t) \\
+\end{align}
+
+Que en el dominio s:
+
+\begin{align}
+  J_m \, s \, \omega (s) = T_m (s) \,- \, T_l(s) \, -\,b\,\omega(s)\\
+  s \, \theta (s) = \omega (s)\\
+\end{align}
+
+ \todo{imagen de esta parte del controlador}
+ 
+*Obtención de la función de transferencia del sistema
+Entrada: $\theta^*$
+Salida: $\theta \rightarrow$  variable controlada
+ 
+ \begin{align}
+  e_\theta (t) = \theta^* (t) \,-\, \theta (t)\\
+  \frac{\mathrm d}{\mathrm d t} \left( e_\theta \right) = \omega^* (t) - \omega(t) \\
+ \end{align}
+ 
+ Dado que el accionamiento electromecánico de cuatro cuadrantes es modelado como una ganancia 
+unitaria dadas las condiciones del sistema.
+ 
+ \begin{align}
+   (J_m \,S^2 \, + \,b\, s) \theta (s) = T_m (s) - T_l (s)\\
+   T_m (s) = G_T (s) \big[ k_p + k_d \, \dfrac{1}{s} + \,k_p \,s] \, e_\theta (s) \\
+   T_m (s) = G_T (s) \big[ k_p + k_d \, \dfrac{1}{s} + \,k_p \,s] \, \theta^* (s) \,-\, \theta (s) \\
+ \end{align}
+
+ *Que igualando y operando matemáticamente $T_m$, se obtienen las siguientes funciones
+ de transferencia:
+
+ \being{align}
+    \dfrac{\theta(s)}{\theta^*(s)} = \dfrac{G_T(s)\big[k_d s^3 + k_p s^2 + k_i}{J_m s^3 + (b_m + G_T(s) k_d) s^2 + G_T (s)(k_p s + k_i)}\\
+    \dfrac{\theta}{T_l} = - \dfrac{s}{J_m s^3 + (b_m + G_T(s) k_d) s^2 + G_T (s)(k_p s + k_i)}
+ \end{align}
+ 
+ En este punto somos capaces de elegir los polos de la función:
+
+\begin{itemize}
+ \item $P_1 < 0$ 
+ \item $P_2 y P_3$ complejos conjugados.
+\end{itemize}
+
+\being{align}
+    (s - P_1)(s - P_2)(s - P_3) = (s - P_1)(s^2 + 2 \xi {\omega}_n s + {{\omega}_n}^2)\\
+    s^3 + (2 \xi {\omega}_n - P_1) s^2 + ({{\omega}_n}^2 - 2 \xi {\omega}_n P_1) s - {{\omega}_n}^2 P_1
+\end{align}
+
+De esta manera se obtuvo una expresión para las ganancias:
+
+Ganancia proporcional: 
+
+\begin{align}
+  k_p = ({{\omega}_n}^2 - 2 \xi {\omega}_n P_1) J_m
+\end{align}
+
+Ganancia integral:
+
+\begin{align}
+  k_i = (P_1 {{\omega}_n}^2) J_m
+\end{align}
+
+Ganancia derivativa:
+
+\begin{align}
+  k_d = (2 \xi {\omega}_n - P_1) J_m - b_m
+\end{align}
+
++Parada de emergencia
+
+Sistemas de gran embergadura presentan frenos mecánicos para no estar forzando el motor
+y tener una mayor seguridad. Se penso en este trabajo que en una situación de riesgo
+es necesario detener el sistema de forma segura antes de a?licar los frenos mecánicos.
+
+Dado que el controlador que acabamos de describir no nos daba la seguridad de detener
+los motores de manera sencilla y rápida decidimos realizar un controlador de tipo PID 
+pero de velocidad. 
+
+Para poder obtener las ganancias se siguió el método de Ziegler?Nichols en el q se 
+realiza un analisis de la respuesta del sistema a una perturbación en escalon.
+
+Como se explicara más adelante contamos con un sistema de banderas que tienen la función
+de decir que controlador tiene el mando del sistema y su correspondiente consigna.
+
++Analisis en tiempo discreto
+
+Hasta este momento hemos presentado nuestro trabajo en el controlador en tiempo continuo.
+El objetivo de este trabajo es presentar una solución digital y es por ello que se adaptó
+el modelo de matlab de tiempo discreto a digital, cumpliendo con las necesidades del
+trabajo.
+
+La adaptación que se realizo fue la siguiente:
+
+Debemos discretizar los valores de la entrada, en esta nueva situación del sistema 
+vamos a dividir el tiempo continuo en pequeños intervalos, esto nos inhibe de conocer
+el estado del sistema en cada momento, al diseñar un controlador digital asumimos este
+riesgo y se deben tomar los recados necesarios para cumplir con nuestros objetivos de seguridad
+brndando un sistema seguro. Esto se resume a realizar un sistema de control lo suficientemente
+rápido en función de la variación de las variables del proceso.
+
+El teorema de muestreo nos dice que el tiempo de muestreo debe ser:
+
+$ f_s > 2*BWcontrolador $
+
+En la práctica esto relación es aún mayor.
+
+Se va a presentar a continuación el camino para transformar un PID continuo a uno discreto:
+
+
+\begin{itemize}
+
+ \item Acción integral
+ 
+ \begin{align}
+  
+  u_i (t) = k_i \int\limits_0^t e(t) dt + u_i_0 \\
+  
+  Para un instante de muestreo:
+  
+  u_i (t_k) = k_i \big[\int\limits_0^t e(t) dt + I_0] \\
+  u_i (t_k) = k_i \big[\int\limits_{t_{k-1}}^{t_k} e(t) dt + \int\limits_0^{t_{k-1}} e(t) dt + I_0] \\
+  
+  u(t_{k-1}) =  k_i \int\limits_0^{t_{k-1}} e(t) dt + I_0 \\
+  
+  u_i (t_k) = k_i \int\limits_{t_{k-1}}^{t_k} e(t) dt + u_i (t_{k-1})
+\end{align}
+ 
+ 
+ \item Acción derivativa
+ 
+ \begin{align}
+  u_d (t_k) = k_d \dfrac{d\,e(t_k)}{dt}
+\end{align}
+ 
+\end{itemize}
+
+Adaptación del programa en matlab
+
+Se deben agregar dos bloques de función en el programa de matlab para transformar nuestro 
+controlador en tiempo continuo al discreto.
+
+
+\begin{itemize}
+
+\item Al ingreso del controlador: Rate transition
+
+De acuerdo a la descripción de Matlab el bloque se encarga de transferir datos 
+entre sistemas que trabajan a una frecencia diferente. El trabajo del bloque es mantener a 
+la salida un valor que se encontraba a la entrada en el momento del muestreo.
+
+\todo{Imagen del bloque}
+
+\item A la salida del controlador: Zero-order hold
+
+De acuerdo con la descripción de Matlab el bloque retiene su entrada durante un período
+de tiempo especificado.
+
+\todo{Imagen}
+
+\end{itemize}
+
+Con estos dos elementos ademas de la transformación de las acciones proporcionales, 
+integrales y derivativas se realizó el controlador en tiempo discreto.
+
++Máquina de estados finitos
+
+Una máquina de estados puede describirse como el modelo de comportamiento de un sistema
+en que los sucesivos estados dependen al mismo tiempo de las entradas del sistema(estado
+del mismo) y del estado en el que se encutra.
+
+La máquina realizada se describe a continuación:
+
+
+
++Conclusión
+
+El trabajo tuvo como objetivo realizar un controlador aplicable a los requerimientos
+industriales, por ende se tuvieron en cuenta diferentes aspectos de seguridad y 
+necesidades que en ese ambito se requieren.
+
+Es el proyecto integrador de la materia en el que se busco poner en práctica los diferentes
+aspectos vistos durante en año.
+
+Hemos destacado dos grande bloques o partes del trabajo:
+
+\begin{itemize}
+
+\item Controlador en tiempo discreto.
+
+Es un controlador de más bajo nivel, adaptado como se ha mencionado a las necesidades
+digitales.
+
+\item Máquina de estados finitos.
+
+\end{itemize}
+
+Como controlador global, notamos que al programar en este nivel de abtracción, indudablemente
+más alto, es mucho más facil tener en cuenta diferentes situaciones que pueden suceder
+en el sistema. Al trabajar de esta manera pudimos ser capaces de hacer crecer nuestro sistema
+de control agregandole estados que en un principio no habiamos tenido en cuenta.
+
+Como resultado del trabajo podemos demostrar las ventajas que presenta realizar máquinas
+de estados finitos en problemas en los que pueden existir situaciónes concurrentes y
+el camino a seguir depende del estado del sistema.
+Para destacar en este trabajo es importante destacar que la seguridad ha sido uno de
+los factores tenidos en cuenta.
+
+
++ Abstract
+
+Se presentan los resultados obtenidos en el proyecto integrador, realización del control
+de una viga testera, de la catedra Automatas y Control Discreto. Este trabajo persiguio
+como objetivos poder aplicar las diferentes conocimientos adquiridos en la catedra asi 
+como integrar los conocimientos previos. Se dividio el trabajo en dos grados de abstracción
+uno de ellos es un control supervisor global, resuelto como una máquina de estados, este 
+es el trabajo de más alto nivel, y por otro lado se trabjo en el control discreto de posición
+en dos dimensiones del sistema. Se tuvieron en cuenta también diferentes escenarios en
+los que el sistema puede icurrir, y un sistema de parada separado del controlador.
+Se presetan también las capturas de los resultados obtenidos en el trabajo.
