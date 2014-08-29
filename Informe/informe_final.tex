@@ -956,8 +956,11 @@ iniciales de nuestro modelo.
  grúa para proceder con la descarga debemos tener en cuenta el número de containers que
  se encuentran depositados y cuanto se va a estirar el cable.
  
+ \item Fuerza de precarga: $Fh0$
  
- \todo{Fh0 : Fuerza de precarga}
+ Como se explicará en la sección \ref{sec:rescontrolador} en el controlador se utilizó una
+ fuerza de precarga para no sufrir un descenso de la carga cuando se comienza un recorrido.
+ 
 \end{itemize}
 
 \subsection{Limitador de velocidad y aceleración}
@@ -1119,6 +1122,7 @@ Mecanismo de izaje
 \end{align}
 
 \subsection{Resultados del Controlador}
+\label{sec:rescontrolador}
 Sobre cada uno de los siguientes controladores se realizaron pruebas que
 entregaron los resultados que se muestran a continuación:
 \begin{itemize}
@@ -1162,21 +1166,21 @@ entregaron los resultados que se muestran a continuación:
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{Test_y_posicion.jpeg}
-  \caption{Respuesta del sistema a un escalón en el eje Y.}
+  \caption{Respuesta del sistema a un escalón en el eje Y}
   \label{fig:resy}
 \end{figure}
 
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{Controlador_precarga.jpeg}
-  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga.}
+  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga}
   \label{fig:testyComp}
 \end{figure}
 
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{Controlador_prec_res.jpeg}
-  \caption{Respuesta del sistema a un escalón en el eje Y con precarga.}
+  \caption{Respuesta del sistema a un escalón en el eje Y con precarga}
   \label{fig:resyComp}
 \end{figure}
 
@@ -1198,14 +1202,14 @@ cable en la gráfica.
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{consx_posx_xl.jpeg}
-  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x.}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x}
   \label{fig:consposxxl}
 \end{figure}
 
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{consy_posy_yl.jpeg}
-  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y.}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y}
   \label{fig:consposyyl}
 \end{figure}
 
@@ -1389,17 +1393,8 @@ automático, este responde de la siguiente manera:
  en cada caso.
  \item $Wait$: Luego de haber llegado al destino esperamos la señal del 
  operador $Manual$ para dar paso al control manual del sistema.
-  \todo{Es necesario q escribamos los margenes de error?}
-  \item $Emergency$: Durante todo el proceso pueden ocurrir inconvenientes que afecten el 
-  funcionamiento del sistema y que lleven a una situación de peligro. Tales situaciones pueden
-  ser detectadas por el sistema: $Away$ cuando la carga responde de manera opuesta a lo esperado
-  o por el operario mediante la señal de $Emer$ para dar aviso de un comportamiento anómalo del 
-  modo automático. Así durante todo el funcionamiento del autómata se puede llegar al estado de
-  emergencia $Emergency$ el cual se encarga de detener el movimiento de la carga para pasar el 
-  mando al operario. 
- \end{itemize}
-
-
+\end{itemize}
+\todo{Es necesario q escribamos los margenes de error?}
 
 \begin{figure*}[!t]
   \centering 
@@ -1449,6 +1444,7 @@ automático, este responde de la siguiente manera:
 \end{figure*}
 
 
+\newpage 
 \section{Conclusión}
 El trabajo tuvo como objetivo realizar un controlador aplicable a los requerimientos
 industriales, por ende se tuvieron en cuenta diferentes aspectos de seguridad y 
