@@ -921,10 +921,12 @@ iniciales de nuestro modelo.
  El objetivo de este vector es guardar el número de containter existente en cada columna.
  Esto nos permite saber hasta donde descender debido a que conocemos el alto de los 
  contenedores evitando de esta manera colisiones.
- \item Posición inicial del carro: $xt\_h = -15.0$
+ \item Posición inicial del carro: $xt\_h$
  
  El carro comienza quince metros dentro del puerto.
- \item Longitud inicial de cable desenrrollado: $lh\_h = yt0-yl0- \dfrac{mL \, g}{Kw} $ 
+ \item Longitud inicial de cable desenrrollado:
+ 
+ $lh\_h = yt0-yl0- \dfrac{mL \, g}{Kw} $ 
  
  Para asegurar una posición inicial de la carga el cable debe estar desenrrollado una 
  constante que tiene en cuenta cuanto el cable se necesita estirar para ejercer una fuerza
@@ -933,16 +935,21 @@ iniciales de nuestro modelo.
  en el instante inicial ya esta precargado y no hay movimiento del cable en la dirección
  $y$.
  
- \item Longitud mínima de cable desenrrollado: $lh\_min = yt0 - yl\_max-\dfrac{mL \, g}{Kw}$
+ \item Longitud mínima de cable desenrrollado: 
+ 
+ $lh\_min = yt0 - yl\_max-\dfrac{mL \, g}{Kw}$
  
  Para asegurar que la carga no va a superar su posición máxima definida en la variable
  $yl_max$, debemos tener en cuenta al momento de enrollar el cable cuanto necesito que este
  se estire para contrarestar el peso de la carga.
  
- \item Posición final del carro:$xt\_g= (numColumna + 0.5) \, wContainer$
+ \item Posición final del carro:
+ 
+ $xt\_g= (numColumna + 0.5) \, wContainer$
  
  La posición final del carro depende del numero de columna  a la que deba ir la carga.
  \item Longitud máxima de cable desenrrollado:
+ 
  $lh\_g= yt0 + yl\_min -  (hContainer \, numContainer \, (numColumna)) - \dfrac{mL \, g}{Kw}$
  
  Para dejar la carga cerca del lugar deseado en donde el operador toma el mando de la
@@ -964,7 +971,7 @@ objetivo.
 Por otro lado para cumplir con los límites de velocidad impuestos la consigna de velocidad 
 no puede ser un salto en escalón y su razón de cambio debe estar limitada.
 
-En la figura \ref{fig:bloque_consigna_pos} se puede observar el bloque en Matlab-Simulink
+En la fig. \ref{fig:bloque_consigna_pos} se puede observar el bloque en Matlab-Simulink
 que nos entrega una consigna de posición con las características necesarias para no
 sueprar los límites de velocidad y aceleración.
 
@@ -976,7 +983,7 @@ sueprar los límites de velocidad y aceleración.
 \end{figure}
 
 La consigna de posición entregada al controlador, resultado del bloaque de Matlab 
-se observa en la figura \ref{fig:consigna_pos}.
+se observa en la fig. \ref{fig:consigna_pos}.
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{consigna_posicion.jpeg}
@@ -1173,6 +1180,34 @@ entregaron los resultados que se muestran a continuación:
   \label{fig:resyComp}
 \end{figure}
 
+A continuación se mostrara la comparación de la consigna de posición en escalón con
+la consigna de posición cuya pendiente permite cumplir con las consignas de velocidad
+y aceleración máxima y con la posición de la carga. Se puede ver el estiramiento del
+cable en la gráfica.
+\begin{itemize}
+ \item Traslación en el eje x fig. \ref{fig:consposxxl}.
+ 
+ La consigna dada es equivalente a la que envía la máquina de estados. Se observa
+ el movimiento de péndulo de la carga.
+ \item Izaje en el eje y fig.\ref{fig:consposyyl}.
+ 
+  La consigna dada es equivalente a la que envía la máquina de estados. Se puede 
+  observar el estiramiento del cable.
+\end{itemize}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consx_posx_xl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x.}
+  \label{fig:consposxxl}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consy_posy_yl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y}
+  \label{fig:consposyyl}
+\end{figure}
 
 \subsection{Parada de emergencia}
 Sistemas de gran envergadura presentan frenos mecánicos para no estar forzando el motor
@@ -1222,7 +1257,7 @@ enviar como consigna de posición la posición actual al momento de entrar al es
 emergencia.
 Esto se explicará en el capítulo \ref{sec:MaqEstados}.
 
-\todo{imagen}
+\todo{imagen de la retroalimentación}
 
 \subsection{Análisis en tiempo discreto}
 Hasta este momento hemos presentado nuestro trabajo en el controlador en tiempo continuo.
