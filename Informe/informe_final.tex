@@ -1389,8 +1389,17 @@ automático, este responde de la siguiente manera:
  en cada caso.
  \item $Wait$: Luego de haber llegado al destino esperamos la señal del 
  operador $Manual$ para dar paso al control manual del sistema.
-\end{itemize}
-\todo{Es necesario q escribamos los margenes de error?}
+  \todo{Es necesario q escribamos los margenes de error?}
+  \item $Emergency$: Durante todo el proceso pueden ocurrir inconvenientes que afecten el 
+  funcionamiento del sistema y que lleven a una situación de peligro. Tales situaciones pueden
+  ser detectadas por el sistema: $Away$ cuando la carga responde de manera opuesta a lo esperado
+  o por el operario mediante la señal de $Emer$ para dar aviso de un comportamiento anómalo del 
+  modo automático. Así durante todo el funcionamiento del autómata se puede llegar al estado de
+  emergencia $Emergency$ el cual se encarga de detener el movimiento de la carga para pasar el 
+  mando al operario. 
+ \end{itemize}
+
+
 
 \begin{figure*}[!t]
   \centering 
@@ -1440,7 +1449,6 @@ automático, este responde de la siguiente manera:
 \end{figure*}
 
 
-\newpage 
 \section{Conclusión}
 El trabajo tuvo como objetivo realizar un controlador aplicable a los requerimientos
 industriales, por ende se tuvieron en cuenta diferentes aspectos de seguridad y 
