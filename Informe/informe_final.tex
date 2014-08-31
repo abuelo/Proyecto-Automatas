@@ -881,6 +881,7 @@ su peso, el modelo matemático es el siguiente:
 \end{align}
 
 \subsection{Condiciones iniciales y  paŕametros del sistema}
+\label{sec:condiniciales}
 
 Para poder comenzar a realizar los controladores se debe conocer cuales serán las condiciones
 iniciales de nuestro modelo.
@@ -992,6 +993,24 @@ se observa en la fig. \ref{fig:consigna_pos}.
   \includegraphics[width=2.5in]{consigna_posicion.jpeg}
   \caption{Gráfico de la consigna de posicíon en funcion del tiempo}
   \label{fig:consigna_pos}
+\end{figure}
+
+Por ultimo en la fig.\ref{fig:atenuaciona} se muestran los resultados de la aceleración
+los que cumplen con las condiciones demandadas y en la fig. \ref{fig:atenuacionv} se 
+muestran los resultados para la velocidad. Esta pertenece al sistema de izaje.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{atenuaciona.jpeg}
+  \caption{Gráfico de la limitación de la aceleración}
+  \label{fig:atenuaciona}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{atenuacionv.jpeg}
+  \caption{Gráfico de la limitación de la velocidad}
+  \label{fig:atenuacionv}
 \end{figure}
 
 \subsection{Controladores de tipo PID}
@@ -1366,6 +1385,30 @@ Una máquina de estados puede describirse como el modelo de comportamiento de un
 en que los sucesivos estados dependen al mismo tiempo de las entradas del sistema y 
 del estado en el que se encuentra. 
 
+Para poder realizar la máquina se realizaron tres versiones hasta poder obtener el
+resultado final. A continuación se presenta una breve descripción de las mismas.
+
+\begin{itemize}
+ \item En la primera versión se busco que la máquina fuera capaz de carga la carga en 
+ el barco. Lo que debía realizar luego de salir del estado manual (en el que el operario
+ toma la carga) es ir a una posición conocida y segura, para a partir de ese momento 
+ comenzar a avanzar, desde este punto hasta el punto más alto permitido. A partir de 
+ este momento se comienza a trasladar el carro en el eje x, hasta su posición final en el 
+ eje x, y por ultimo comienza su descenso hasta la posición final en el eje y. El ultimo estado
+ era nuevamente manual, donde el operario debería dejar la carga.
+ 
+ \item La segunda versión de la máquina de estados tomaba lo realizado en la primera versión 
+ pero además agregaba un grupo de estados que representaban el camino de regreso, ascenso el el
+ eje y, traslación en el eje x y descenso hasta el muelle. El problema general se concibe de
+ manera que la grúa siempre va a realizar un ciclo completo, ida hacia el barco y regreso al muelle. 
+ 
+ \item La tercer y ultima versión hasta el momento se le agregan las señales de emergencia en las 
+ que detienen el sistema y le avisan al operario que el sistema no esta respondiendo de una manera
+ esperada.
+ 
+\end{itemize}
+
+
 La máquina de estados realizada se describe en su forma de
 diagrama de estados finitos en la Fig.\ref{fig:dig_control}. A continuación y haciendo 
 referencia a los nombres de este diagrama se detalla el comportamiento en modo automático 
@@ -1401,6 +1444,13 @@ automático, este responde de la siguiente manera:
  en cada caso.
  \item $Wait$: Luego de haber llegado al destino esperamos la señal del 
  operador $Manual$ para dar paso al control manual del sistema.
+  \item $Emergency$: Como se describió una situación anormal del sistema lleva al mismo
+  a un estado de emergencia el cual detiene los motores. Pero no solo una situación del
+  sistema lleva a este estado, también el operario puede llevar al sistema al estado
+  emergencia mediante la activación de un switch. Para salir de este estado el operario
+  debe dar la señal de que se tiene conocimiento de que el sistema entro a un estado de 
+  emergencia y pasará de esta forma a un estado manual, siguiendo así con su funcionamiento
+  normal.
 \end{itemize}
 
 \begin{figure*}[!t]
@@ -1444,6 +1494,7 @@ automático, este responde de la siguiente manera:
 	  \path [line] (descendHome) -- node {Away} (emergency);
 	  %Cierre del bucle
 	  \path (end) edge[bend left=120,looseness=2] node[fill=white] {Manual} (init);
+	  \path (emergency) edge[bend right=90,looseness=2] node[fill=white] {Manual} (init);
       \end{tikzpicture}
   %}
     \caption{Diagrama de flujo del controlador supervisor}
@@ -1454,7 +1505,8 @@ automático, este responde de la siguiente manera:
 
 A continuación se presentarán las constantes que se utilizan en la máquina de estados.
 Estas sirven para detectar si el sistema esta en una situación que no es normal
-y lo lleva a un estado de emergencia enviando una señal al operario.
+y lo lleva a un estado de emergencia enviando una señal al operario y para saber en que estado
+debe ingresar.
 
 
 \begin{itemize}
@@ -1476,8 +1528,83 @@ y lo lleva a un estado de emergencia enviando una señal al operario.
 \subsection{Presentación de resultados}
 
 El trabajo se dividió de manera de ir trabajando en la máquina de estado y en el
-control de los motores de manera independiente. De esta forma pudimos avanzar 
-en paralelo. A continuación se presentan los resultados completos.
+control de los motores de forma independiente. De esta forma pudimos avanzar 
+en paralelo. A continuación se presentan los resultados completos, es importante 
+marcar que las condiciones iniciales en estas demostraciones son las explicadas en
+la sección \ref{sec:condiniciales}.
+
+\begin{itemize}
+ \item Para comenzar la presentación de resultados se muestra en la Fig. \ref{fig:idageneral}
+ la respuesta del sistema a un ciclo de ida hacia el barco. Se intenta mostrar con esta imagen
+ el sistema de forma global. Se observan las señales enviadas desde la máquina de estados, 
+ la respuesta del sistema, asi como también el gráfico descripto por la carga en su camino
+ hacia el barco en la parte inferior izquierda. También se muestran los switch que representan
+ las señasles que puede enviarle el operario a la máquina.
+
+\item En la Fig. \ref{fig:consignasyrespuestasy} Se puede observar la consigna en 
+escalon enviada desde la máquina de estados, la respuesta de los controladores de 
+los motores a la consigna de posición atenuada para estar dentro de los límites de 
+velocidad y aceleración como se ve en la figura \ref{fig:atenuaciona} para el izaje
+de la carga, mientras que en la Fig. \ref{fig:consignasyrespuestasx} se muestra 
+la respuesta en la traslación.
+
+ \item En la Fig. \ref{fig:idavueltageneral} se muestra la respuesta del sistema al 
+ movimiento completo. Esto es tomar la carga, realizado de manera manual por el 
+ operario, llevarla al barco de manera automática y esperar la señal del operario
+ para poder volver al muelle.
+ 
+\end{itemize}
+
+ \begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{Ida_general.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco}
+  \label{fig:idageneral}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{consignasyrespuestasy.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco en el izaje}
+  \label{fig:consignasyrespuestasy}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{consignasyrespuestasx.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco en traslación}
+  \label{fig:consignasyrespuestasx}
+\end{figure}
+
+ \begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{Ida_vuelta_general.jpeg}
+  \caption{Respuesta del sistema a un ciclo de carga completo}
+  \label{fig:idavueltageneral}
+\end{figure}
+
+\subsection{Próximas versiones de la máquina de estados}
+
+Hasta ahora tenemos una versión de la máquina de estados que es capaz de esperar 
+que el operario tome la carga y automaticamente la lleve al barco y volver desde el
+mismo. Se plantean tres mejoras a este modelo que se pueden sumar a nuestro desarrollo
+puesto que se han dejado las variables para ello.
+
+\begin{itemize}
+ \item inteligencia al estado automático, esto es conocer la posición final de traslación
+ teniendo en cuenta dos situaciones:
+ \begin{itemize}
+  \item Carga secuencial en el eje x, cargar en la columna 1, luego la 2 y asi sucesivamente.
+  \item Carga completamente la columna 1 y luego completamente la 2 y asi sucesivamente.
+ \end{itemize}
+ 
+ \item Realizar trayectorias curvas que le permitrían al operario que la carga y la descarga 
+ fuera más rapidamente.
+ 
+ \item Detección de carga, discriminando si estamos cargando o descargando, siendo capaces
+ de esta manera de avanzar más rápido si no hay carga.
+\end{itemize}
+
 
 \newpage 
 \section{Conclusión}
