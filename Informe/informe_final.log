@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.8.28)  1 SEP 2014 12:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.8.28)  1 SEP 2014 15:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -961,20 +961,20 @@ Package pdftex.def Info: ./images/analisis_sistema_fisico.jpeg used on input li
 ne 844.
 (pdftex.def)             Requested size: 180.67499pt x 82.65007pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 920--921
+Underfull \hbox (badness 10000) in paragraph at lines 923--924
 []\OT1/ptm/m/n/10 N[]umero de con-tain-ers por columna:
  []
 
 [3 <./images/analisis_sistema_fisico.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 954--955
+Underfull \hbox (badness 10000) in paragraph at lines 957--960
 []$\OML/cmm/m/it/10 lh[]g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 yt\OT1/cmr/m/n/10 
-0 + \OML/cmm/m/it/10 yl[]min \OMS/cmsy/m/n/10 ^^@
+0 + \OML/cmm/m/it/10 yl[]min$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 954--955
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 hContainer numContainer \OT1/cmr/m/n/10 (\OML
-/cmm/m/it/10 numColumna\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^@
+Underfull \hbox (badness 10000) in paragraph at lines 957--960
+\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 hContainer numContainer \
+OT1/cmr/m/n/10 (\OML/cmm/m/it/10 numColumna\OT1/cmr/m/n/10 ))$
  []
 
 <./images/bloque_consigna_posicion.jpeg, id=35, 473.51906pt x 64.74188pt>
@@ -982,163 +982,166 @@ File: ./images/bloque_consigna_posicion.jpeg Graphic file (type jpg)
 
 <use ./images/bloque_consigna_posicion.jpeg>
 Package pdftex.def Info: ./images/bloque_consigna_posicion.jpeg used on input l
-ine 984.
+ine 990.
 (pdftex.def)             Requested size: 180.67499pt x 24.70193pt.
 
 <./images/consigna_posicion.jpeg, id=36, 1028.34187pt x 554.82281pt>
 File: ./images/consigna_posicion.jpeg Graphic file (type jpg)
 
 <use ./images/consigna_posicion.jpeg>
-Package pdftex.def Info: ./images/consigna_posicion.jpeg used on input line 993
-.
+Package pdftex.def Info: ./images/consigna_posicion.jpeg used on input line 100
+1.
 (pdftex.def)             Requested size: 180.67499pt x 97.47641pt.
 
 <./images/atenuaciona.jpeg, id=37, 1028.34187pt x 558.58687pt>
 File: ./images/atenuaciona.jpeg Graphic file (type jpg)
 
 <use ./images/atenuaciona.jpeg>
-Package pdftex.def Info: ./images/atenuaciona.jpeg used on input line 1004.
+Package pdftex.def Info: ./images/atenuaciona.jpeg used on input line 1012.
 (pdftex.def)             Requested size: 180.67499pt x 98.13771pt.
 
 <./images/atenuacionv.jpeg, id=38, 1028.34187pt x 578.16pt>
 File: ./images/atenuacionv.jpeg Graphic file (type jpg)
 
 <use ./images/atenuacionv.jpeg>
-Package pdftex.def Info: ./images/atenuacionv.jpeg used on input line 1011.
+Package pdftex.def Info: ./images/atenuacionv.jpeg used on input line 1019.
 (pdftex.def)             Requested size: 180.67499pt x 101.57649pt.
  [4 <./images/bloque_consigna_posicion.jpeg> <./images/consigna_posicion.jpeg> 
 <./images/atenuaciona.jpeg> <./images/atenuacionv.jpeg>]
-Underfull \hbox (badness 6188) in paragraph at lines 1062--1065
+Underfull \hbox (badness 6188) in paragraph at lines 1070--1073
  []\OT1/ptm/m/it/10 Funci[]on de trans-fer-en-cia del sis-tema: [][] \OT1/ptm/m
 /n/10 Para ello
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1062--1065
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1073
 
  []
 
-<./images/Test_x.jpeg, id=42, 558.58687pt x 240.14719pt>
-File: ./images/Test_x.jpeg Graphic file (type jpg)
 
-<use ./images/Test_x.jpeg>
-Package pdftex.def Info: ./images/Test_x.jpeg used on input line 1165.
-(pdftex.def)             Requested size: 180.67499pt x 77.67313pt.
-
-<./images/Test_x_posicion.jpeg, id=43, 1028.34187pt x 551.81157pt>
-File: ./images/Test_x_posicion.jpeg Graphic file (type jpg)
-
-<use ./images/Test_x_posicion.jpeg>
-Package pdftex.def Info: ./images/Test_x_posicion.jpeg used on input line 1172.
-
-(pdftex.def)             Requested size: 180.67499pt x 96.94736pt.
-
-<./images/Test_y.jpeg, id=44, 558.58687pt x 237.88875pt>
-File: ./images/Test_y.jpeg Graphic file (type jpg)
-
-<use ./images/Test_y.jpeg>
-Package pdftex.def Info: ./images/Test_y.jpeg used on input line 1180.
-(pdftex.def)             Requested size: 180.67499pt x 76.94267pt.
-
-<./images/Test_y_posicion.jpeg, id=45, 1028.34187pt x 552.56438pt>
-File: ./images/Test_y_posicion.jpeg Graphic file (type jpg)
-
-<use ./images/Test_y_posicion.jpeg>
-Package pdftex.def Info: ./images/Test_y_posicion.jpeg used on input line 1187.
-
-(pdftex.def)             Requested size: 180.67499pt x 97.07962pt.
-
-<./images/Controlador_precarga.jpeg, id=46, 953.81343pt x 417.81094pt>
-File: ./images/Controlador_precarga.jpeg Graphic file (type jpg)
-
-<use ./images/Controlador_precarga.jpeg>
-Package pdftex.def Info: ./images/Controlador_precarga.jpeg used on input line 
-1194.
-(pdftex.def)             Requested size: 180.67499pt x 79.14264pt.
-
-<./images/Controlador_prec_res.jpeg, id=47, 1028.34187pt x 555.57562pt>
-File: ./images/Controlador_prec_res.jpeg Graphic file (type jpg)
-
-<use ./images/Controlador_prec_res.jpeg>
-Package pdftex.def Info: ./images/Controlador_prec_res.jpeg used on input line 
-1201.
-(pdftex.def)             Requested size: 180.67499pt x 97.60866pt.
-
-<./images/consx_posx_xl.jpeg, id=48, 1028.34187pt x 545.78906pt>
-File: ./images/consx_posx_xl.jpeg Graphic file (type jpg)
-
-<use ./images/consx_posx_xl.jpeg>
-Package pdftex.def Info: ./images/consx_posx_xl.jpeg used on input line 1223.
-(pdftex.def)             Requested size: 180.67499pt x 95.88927pt.
-
-<./images/consy_posy_yl.jpeg, id=49, 1028.34187pt x 555.57562pt>
-File: ./images/consy_posy_yl.jpeg Graphic file (type jpg)
-
-<use ./images/consy_posy_yl.jpeg>
-Package pdftex.def Info: ./images/consy_posy_yl.jpeg used on input line 1230.
-(pdftex.def)             Requested size: 180.67499pt x 97.60866pt.
- [5]
-<./images/Test_Controlador_emergencia1.jpeg, id=54, 1028.34187pt x 551.81157pt>
+<./images/Test_Controlador_emergencia1.jpeg, id=42, 1028.34187pt x 551.81157pt>
 File: ./images/Test_Controlador_emergencia1.jpeg Graphic file (type jpg)
 <use ./images/Test_Controlador_emergencia1.jpeg>
 Package pdftex.def Info: ./images/Test_Controlador_emergencia1.jpeg used on inp
-ut line 1251.
+ut line 1169.
 (pdftex.def)             Requested size: 180.67499pt x 96.94736pt.
- [6 <./images/Test_x.jpeg> <./images/Test_x_posicion.jpeg> <./images/Test_y.jpe
-g> <./images/Test_y_posicion.jpeg> <./images/Controlador_precarga.jpeg> <./imag
-es/Controlador_prec_res.jpeg> <./images/consx_posx_xl.jpeg> <./images/consy_pos
-y_yl.jpeg> <./images/Test_Controlador_emergencia1.jpeg>]
-<./images/Controlador_precarga_velocidad.jpeg, id=58, 1028.34187pt x 499.11469p
+ [5 <./images/Test_Controlador_emergencia1.jpeg>]
+<./images/Controlador_precarga_velocidad.jpeg, id=47, 1028.34187pt x 499.11469p
 t>
 File: ./images/Controlador_precarga_velocidad.jpeg Graphic file (type jpg)
  <use ./images/Controlador_precarga_velocidad.jpeg>
 Package pdftex.def Info: ./images/Controlador_precarga_velocidad.jpeg used on i
-nput line 1271.
+nput line 1189.
 (pdftex.def)             Requested size: 180.67499pt x 87.68909pt.
 
-<./images/parad_de_emergencia_state.jpeg, id=59, 140.77594pt x 108.405pt>
+<./images/parad_de_emergencia_state.jpeg, id=48, 140.77594pt x 108.405pt>
 File: ./images/parad_de_emergencia_state.jpeg Graphic file (type jpg)
 
 <use ./images/parad_de_emergencia_state.jpeg>
 Package pdftex.def Info: ./images/parad_de_emergencia_state.jpeg used on input 
-line 1287.
+line 1205.
 (pdftex.def)             Requested size: 72.26999pt x 55.65137pt.
 
-<./images/controlador_posicion.jpeg, id=60, 263.48438pt x 185.19188pt>
+<./images/controlador_posicion.jpeg, id=49, 263.48438pt x 185.19188pt>
 File: ./images/controlador_posicion.jpeg Graphic file (type jpg)
 
 <use ./images/controlador_posicion.jpeg>
 Package pdftex.def Info: ./images/controlador_posicion.jpeg used on input line 
-1346.
+1264.
 (pdftex.def)             Requested size: 263.48372pt x 185.1914pt.
 
-Overfull \hbox (10.43385pt too wide) in paragraph at lines 1346--1347
+Overfull \hbox (10.43385pt too wide) in paragraph at lines 1264--1265
  [][] 
  []
 
-<./images/rate.jpeg, id=61, 74.52844pt x 59.47218pt>
+<./images/rate.jpeg, id=50, 74.52844pt x 59.47218pt>
 File: ./images/rate.jpeg Graphic file (type jpg)
  <use ./images/rate.jpeg>
-Package pdftex.def Info: ./images/rate.jpeg used on input line 1359.
+Package pdftex.def Info: ./images/rate.jpeg used on input line 1277.
 (pdftex.def)             Requested size: 74.52824pt x 59.47203pt.
 
-<./images/zero_order.jpeg, id=62, 61.73062pt x 60.225pt>
+<./images/zero_order.jpeg, id=51, 61.73062pt x 60.225pt>
 File: ./images/zero_order.jpeg Graphic file (type jpg)
 
 <use ./images/zero_order.jpeg>
-Package pdftex.def Info: ./images/zero_order.jpeg used on input line 1372.
+Package pdftex.def Info: ./images/zero_order.jpeg used on input line 1290.
 (pdftex.def)             Requested size: 61.73045pt x 60.22484pt.
- [7 <./images/Controlador_precarga_velocidad.jpeg> <./images/parad_de_emergenci
-a_state.jpeg>] [8 <./images/controlador_posicion.jpeg> <./images/rate.jpeg> <./
+ [6 <./images/Controlador_precarga_velocidad.jpeg> <./images/parad_de_emergenci
+a_state.jpeg>] [7 <./images/controlador_posicion.jpeg> <./images/rate.jpeg> <./
 images/zero_order.jpeg>]
 
-LaTeX Warning: Float too large for page by 36.6007pt on input line 1502.
+LaTeX Warning: Float too large for page by 36.6007pt on input line 1420.
+
+<./images/Test_x.jpeg, id=62, 558.58687pt x 240.14719pt>
+File: ./images/Test_x.jpeg Graphic file (type jpg)
+
+<use ./images/Test_x.jpeg>
+Package pdftex.def Info: ./images/Test_x.jpeg used on input line 1475.
+(pdftex.def)             Requested size: 180.67499pt x 77.67313pt.
+
+<./images/Test_x_posicion.jpeg, id=63, 1028.34187pt x 551.81157pt>
+File: ./images/Test_x_posicion.jpeg Graphic file (type jpg)
+
+<use ./images/Test_x_posicion.jpeg>
+Package pdftex.def Info: ./images/Test_x_posicion.jpeg used on input line 1482.
+
+(pdftex.def)             Requested size: 180.67499pt x 96.94736pt.
+
+<./images/Test_y.jpeg, id=64, 558.58687pt x 237.88875pt>
+File: ./images/Test_y.jpeg Graphic file (type jpg)
+
+<use ./images/Test_y.jpeg>
+Package pdftex.def Info: ./images/Test_y.jpeg used on input line 1490.
+(pdftex.def)             Requested size: 180.67499pt x 76.94267pt.
+
+<./images/Test_y_posicion.jpeg, id=65, 1028.34187pt x 552.56438pt>
+File: ./images/Test_y_posicion.jpeg Graphic file (type jpg)
+
+<use ./images/Test_y_posicion.jpeg>
+Package pdftex.def Info: ./images/Test_y_posicion.jpeg used on input line 1497.
+
+(pdftex.def)             Requested size: 180.67499pt x 97.07962pt.
+
+<./images/Controlador_precarga.jpeg, id=66, 953.81343pt x 417.81094pt>
+File: ./images/Controlador_precarga.jpeg Graphic file (type jpg)
+
+<use ./images/Controlador_precarga.jpeg>
+Package pdftex.def Info: ./images/Controlador_precarga.jpeg used on input line 
+1504.
+(pdftex.def)             Requested size: 180.67499pt x 79.14264pt.
+
+<./images/Controlador_prec_res.jpeg, id=67, 1028.34187pt x 555.57562pt>
+File: ./images/Controlador_prec_res.jpeg Graphic file (type jpg)
+
+<use ./images/Controlador_prec_res.jpeg>
+Package pdftex.def Info: ./images/Controlador_prec_res.jpeg used on input line 
+1511.
+(pdftex.def)             Requested size: 180.67499pt x 97.60866pt.
+
+
+LaTeX Warning: Reference `sec:limites' on page 8 undefined on input line 1522.
+
+[8 <./images/Test_x.jpeg> <./images/Test_x_posicion.jpeg> <./images/Test_y.jpeg
+> <./images/Test_y_posicion.jpeg> <./images/Controlador_precarga.jpeg>]
+<./images/consx_posx_xl.jpeg, id=71, 1028.34187pt x 545.78906pt>
+File: ./images/consx_posx_xl.jpeg Graphic file (type jpg)
+
+<use ./images/consx_posx_xl.jpeg>
+Package pdftex.def Info: ./images/consx_posx_xl.jpeg used on input line 1540.
+(pdftex.def)             Requested size: 180.67499pt x 95.88927pt.
+
+<./images/consy_posy_yl.jpeg, id=72, 1028.34187pt x 555.57562pt>
+File: ./images/consy_posy_yl.jpeg Graphic file (type jpg)
+
+<use ./images/consy_posy_yl.jpeg>
+Package pdftex.def Info: ./images/consy_posy_yl.jpeg used on input line 1547.
+(pdftex.def)             Requested size: 180.67499pt x 97.60866pt.
 
 <./images/Ida_general.jpeg, id=73, 1028.34187pt x 557.83406pt>
 File: ./images/Ida_general.jpeg Graphic file (type jpg)
 
 <use ./images/Ida_general.jpeg>
-Package pdftex.def Info: ./images/Ida_general.jpeg used on input line 1560.
+Package pdftex.def Info: ./images/Ida_general.jpeg used on input line 1582.
 (pdftex.def)             Requested size: 216.81pt x 117.60825pt.
 
 <./images/consignasyrespuestasy.jpeg, id=74, 1028.34187pt x 554.07pt>
@@ -1146,7 +1149,7 @@ File: ./images/consignasyrespuestasy.jpeg Graphic file (type jpg)
 
 <use ./images/consignasyrespuestasy.jpeg>
 Package pdftex.def Info: ./images/consignasyrespuestasy.jpeg used on input line
- 1567.
+ 1589.
 (pdftex.def)             Requested size: 216.81pt x 116.81467pt.
 
 <./images/consignasyrespuestasx.jpeg, id=75, 1026.08344pt x 555.57562pt>
@@ -1154,35 +1157,40 @@ File: ./images/consignasyrespuestasx.jpeg Graphic file (type jpg)
 
 <use ./images/consignasyrespuestasx.jpeg>
 Package pdftex.def Info: ./images/consignasyrespuestasx.jpeg used on input line
- 1574.
+ 1596.
 (pdftex.def)             Requested size: 216.81pt x 117.38641pt.
 
 <./images/Ida_vuelta_general.jpeg, id=76, 1028.34187pt x 554.07pt>
 File: ./images/Ida_vuelta_general.jpeg Graphic file (type jpg)
 
 <use ./images/Ida_vuelta_general.jpeg>
-Package pdftex.def Info: ./images/Ida_vuelta_general.jpeg used on input line 15
-81.
+Package pdftex.def Info: ./images/Ida_vuelta_general.jpeg used on input line 16
+03.
 (pdftex.def)             Requested size: 216.81pt x 116.81467pt.
- [9 <./images/Ida_general.jpeg> <./images/consignasyrespuestasy.jpeg> <./images
-/consignasyrespuestasx.jpeg> <./images/Ida_vuelta_general.jpeg>]
+ [9 <./images/Controlador_prec_res.jpeg> <./images/consx_posx_xl.jpeg> <./image
+s/consy_posy_yl.jpeg> <./images/Ida_general.jpeg> <./images/consignasyrespuesta
+sy.jpeg>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 1721.
+(Font)              <8> on input line 1743.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 1721.
- [10] [11] (./informe_final.aux)
+(Font)              <6> on input line 1743.
+ [10 <./images/consignasyrespuestasx.jpeg> <./images/Ida_vuelta_general.jpeg>] 
+[11] (./informe_final.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 16616 strings out of 493108
- 345660 string characters out of 6140725
- 429467 words of memory out of 5000000
- 19712 multiletter control sequences out of 15000+600000
- 40325 words of font info for 74 fonts, out of 8000000 for 9000
+ 16620 strings out of 493108
+ 345721 string characters out of 6140725
+ 428986 words of memory out of 5000000
+ 19715 multiletter control sequences out of 15000+600000
+ 41432 words of font info for 75 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 62i,13n,71p,461b,844s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,13n,71p,461b,883s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
@@ -1195,7 +1203,7 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/t
 imes/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on informe_final.pdf (11 pages, 1843819 bytes).
+Output written on informe_final.pdf (11 pages, 1845137 bytes).
 PDF statistics:
  132 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream
