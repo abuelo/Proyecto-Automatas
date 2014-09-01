@@ -131,6 +131,9 @@
 %
 \ifCLASSINFOpdf
   \usepackage[pdftex]{graphicx}
+  
+  %\usepackage[colorlinks]{hyperref}
+  \usepackage[colorinlistoftodos]{todonotes}
   % declare the path(s) where your graphic files are
   \graphicspath{{./images/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -385,7 +388,7 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
+\usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version can be obtained at:
@@ -492,12 +495,11 @@ Se presentan los resultados obtenidos en el "Proyecto Global Integrador", de la 
 Autómatas y Control Discreto. Este trabajo persigue como objetivos poder aplicar los 
 diferentes conocimientos adquiridos en la materia así como integrar los conocimientos 
 previos, a la tarea de realizar el control coordinado de una grúa portuaria. 
-Dicho desarrollo se presenta a continuación dividido en dos grandes elementos: 
+Dicho desarrollo se resolvió mediante dos grandes elementos: 
 el control discreto de posición en dos dimensiones del sistema y por otro lado el control 
-supervisor global, resuelto como una máquina de estados. Se tuvieron en cuenta también 
+supervisor global, utilizando una máquina de estados. Se tuvieron en cuenta también 
 los diferentes escenarios en los que el sistema pudiera encontrarse, y un sistema de 
-parada para los casos de emergencia. Finalmente, se prestan 
-también de los resultados obtenidos en el trabajo.
+parada para los casos de emergencia.
 \end{abstract}
 
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -574,12 +576,13 @@ presentar.
 A continuación se presenta el esquema del informe:
 
 \begin{itemize}
+ \item Análisis del sistema físico.
  \item Modelo del sistema físico.
  \item Controladores de tipo PID.
  \item Resultados del controlador
  \item Parada de emergencia.
- \item Analisis en tiempo discreto
- \item Adaptacion del controlador en Matlab-Simulink
+ \item Análisis en tiempo discreto
+ \item Adaptación del controlador en Matlab-Simulink
  \item Máquina de estados finitos.
  \item Conclusión.
 \end{itemize}
@@ -702,7 +705,7 @@ Mediante el control de ambos es posible llevar una
 carga desde el muelle a su ubicación dentro del barco.
 
 
-\subsection{Modelo del sistema físico}
+\subsection{Análisis del sistema físico}
 \label{sec:fisica}
 Para poder realizar el diseño de un controlador que
 haga posible dicha tarea se cuenta con un modelo 
@@ -733,14 +736,17 @@ los elementos que actúan en el sistema:
  \begin{itemize}
   \item Velocidad máx.: +/- 4.0 $m/s$ (cargado o sin carga).
   \item Aceleración máx: +/- 1.0 $m/s^2$ (cargado o sin carga).
-  \item Carro (incluye sistema izaje): $m_c=50000 kg$;
-  \item Radio primitivo de rueda: $R_w = 0.5 m$;
-  \item Momento de inercia de ruedas (eje lento): 
+  \item Carro (incluye sistema izaje):\\ 
+  $m_c=50000 kg$;
+  \item Radio primitivo de rueda: \\
+  $R_w = 0.5 m$;
+  \item Momento de inercia de ruedas (eje lento):\\ 
   $J_w = 2.0 kg.m^2$ 
-  \item Caja reductora: relación $i=15:1$;
+  \item Caja reductora: relación \\
+  $i=15:1$;
   \item Momento de inercia de motor y freno (eje rápido): 
   $J_m = 10 kg.m^2$;
-  \item Fricción mecánica equivalente (lado motor):
+  \item Fricción mecánica equivalente (eje rápido):\\
   $b_{eqm}=b_m+\dfrac{b_w}{i^2}=30 \dfrac{N.n}{rad.s}$.
  \end{itemize}
 
@@ -749,12 +755,15 @@ los elementos que actúan en el sistema:
  \begin{itemize}
   \item Velocidad máx.: +/- 1.5 $m/s$ (cargado) o +/- $3.0 m/s$ (sin carga).
   \item Aceleración max.: +/- 1.0 $m/s^2$ (cargado o sin carga).
-  \item Radio primitivo de tambor: $R_d = 0.75 m$ (1 sola corrida de cable);
-  \item Momento de inercia de tambor (eje lento): $J_d = 8.0 kg.m^2$.
-  \item Caja reductora: relación $i=30.0:1$.
+  \item Radio primitivo de tambor: \\
+  $R_d = 0.75 m$ (1 sola corrida de cable);
+  \item Momento de inercia de tambor (eje lento):\\
+  $J_d = 8.0 kg.m^2$.
+  \item Caja reductora: relación \\
+  $i=30.0:1$.
   \item Momento de inercia de motor y freno (eje rápido): $J_m = 30.0 kg.m^2$;
-  \item Fricción mecánica equivalente (lado motor): 
-  $b_{eqm}=b_m+\dfrac{b_w}{i^2}=18 \dfrac{N.n}{rad.s}$
+  \item Fricción mecánica equivalente (eje rápido):\\ 
+  $b_{eqm}=b_m+\dfrac{b_d}{i^2}=18 \dfrac{N.n}{rad.s}$
  \end{itemize}
 
  \item Cable de Izaje: Cable de acero del cual cuelga
@@ -762,14 +771,14 @@ los elementos que actúan en el sistema:
  \begin{itemize}
   \item Cable elástico con rozamiento:\\
   $K_w=1,80.10^5~\dfrac{N}{m}\\$
-  $b_w=3.10^3~\dfrac{N}{m.s}$
+  $b_w=3.10^3~\dfrac{N.s}{m}$
  \end{itemize}
 
  \item Carga suspendida: Es la inercia que se encuentra
  al final del cable de izaje. Se compone de la masa del
  elemento de agarre y de la carga nominal a transportar.
  \begin{itemize}
-  \item Gancho vacío: $m_l=m_{l0}=15000 kg$ (sin carga)
+  \item Gancho vacío: $m_{l0}=15000 kg$ (sin carga)
   \item Gancho con Carga nominal: $m_l=65000 kg=(15000 + 50000 kg)$
  \end{itemize}
 
@@ -780,7 +789,7 @@ resulta interesante poder referir los movimientos
 giratorios de los motores eléctricos y del tambor
 a coordenadas lineales.
  
-
+\subsection{Modelo del sistema físico}
 Para continuar en el desarrollo de un modelo matemático
 necesitamos de un análisis de las fuerzas actuantes sobre
 cada una de las partes antes descriptas. Mediante esta 
@@ -798,21 +807,23 @@ de las partes:
 
 
 \subsubsection{Mecanismo de Traslación}
+\label{sec:mecTras}
 En el movimiento de traslación la masa en movimiento es la masa
-total del sistema $M_t= m_t + m_c$ y sobre la que actúa 
+total del sistema más las masas rodantes y sobre la que actúa 
 la fuerza $F_t$, correspondiente a la tracción del trolley, y $F_w$, 
-la fuerza de tensión del cable. Todas los rozamientos se reducen 
+la fuerza de tensión del cable. Todos los rozamientos se reducen 
 en $b_t$, coeficiente viscoso del mecanismo de traslación.
 \begin{align}
     M_t \ddot{x_t}(t) &=  F_t(t) - b_t \dot{x_t}(t) + F_w(t) \sin \theta(t)\\
     \intertext{Donde:}
     M_t &= m_t + \dfrac{J_{w}+J_{m} i^2}{R_{w}^2} \\
     F_t &= \dfrac{T_{m} i}{R_{w}} \\
-    b_t &= \dfrac{b_{eqm} i^2}{R_{w}}
+    b_t &= \dfrac{b_{eqm} i^2}{{R_{w}}^2}
 \end{align}
-Siendo $T_{m}$, el torque motor, nuestra variable controlada en el sistema.
+Siendo $T_{m}$, el torque motor, nuestra variable manipulada en el sistema.
 
 \subsubsection{Mecanismo de Izaje}
+\label{sec:mecIza}
 El mecanismo de izaje es rotatorio pero es mas conveniente expresarlo
 en términos lineales. Donde $M_h$ es la inercia del mecanismo, 
 $l_h$ representa el largo de cable
@@ -824,8 +835,9 @@ en $b_h$ coeficiente viscoso del mecanismo de izaje.
     \intertext{Donde:}
     M_h &= \dfrac{J_{d}+J_{m} i^2}{R_{d}^2} \\
     F_h &= \dfrac{T_{m} i}{R_{d}} \\
-    b_h &= \dfrac{b_{eqm} i^2}{R_{d}}
+    b_h &= \dfrac{b_{eqm} i^2}{{R_{d}}^2} 
 \end{align}
+Siendo $T_{m}$, el torque motor, nuestra variable manipulada en el sistema.
 En la Fig.\ref{fig:fisica} se muestra el modelo en diagrama de bloques en Simulink.
 \begin{figure}[!t]
  \centering
@@ -835,6 +847,7 @@ En la Fig.\ref{fig:fisica} se muestra el modelo en diagrama de bloques en Simuli
 \end{figure}
 
 \subsubsection{Cable de Izaje}
+\label{subsec:cable}
 Un cable de acero considerado equivalente elástico sin masa
 propia es el elemento de unión entre el trolley y la carga
 suspendida. Considerando la ley de Hooke y 
@@ -849,24 +862,164 @@ constante que concentra los rozamientos internos del cable.
 De manera geométrica se puede deducir el valor de $l$ y $\theta$ 
 mediante el análisis de la Fig.\ref{fig:ejes}:
 \begin{align}
-    x_c(t) &=  x_t + l \sin \phi \\
-    y_c(t) &=  y_t - l \cos \phi 
+    x_l(t) &=  x_t + l \sin \phi \\
+    y_l(t) &=  y_t - l \cos \phi 
 \end{align}
 Despejando $l$ y $\theta$:
 \begin{align}
-    l &= \sqrt{(x_c - x_t)^2 + (y_t - y_c)^2} \\
-    \tan \theta &= \dfrac{x_c - x_t}{y_t - y_c}
+    l &= \sqrt{(x_l - x_t)^2 + (y_t - y_l)^2} \\
+    \tan \theta &= \dfrac{x_l - x_t}{y_t - y_l}
 \end{align}
 
 \subsubsection{Carga Suspendida}
-Siendo $m_c$ la masa de la carga suspendida del cable
+Siendo $m_l$ la masa de la carga suspendida del cable
 y sobre la que solo actúan la fuerza $F_w$ y
 su peso, el modelo matemático es el siguiente:
 \begin{align}
-    m_c \ddot{x_c}(t) &=  -F_w(t) \sin \theta(t) \\
-    m_c \ddot{y_c}(t) &=  F_w(t) \cos \theta(t) - m_c g 
+    m_l \ddot{x_l}(t) &=  -F_w(t) \sin \theta(t) \\
+    m_l \ddot{y_l}(t) &=  F_w(t) \cos \theta(t) - m_l g 
 \end{align}
 
+\subsection{Condiciones iniciales y  paŕametros del sistema}
+\label{sec:condiniciales}
+
+Para poder comenzar a realizar los controladores se debe conocer cuales serán 
+las condiciones iniciales de nuestro modelo.
+
+\begin{itemize}
+ \item Profundidad del barco: $prof \_ barco$
+ 
+ Se pensó en esta variable teniendo en cuenta de que los barcos que debemos cargar pueden
+ presentar dimensiones diferentes.
+ \item Altura del container: $hContainer$
+ 
+ Esta variable sirve para saber hasta donde hay que descender la carga, dependiendo del 
+ número de contariners dejados.
+ \item Ancho del container: $wContainer$
+ 
+ Esta variable sirve para apartir del ancho del container saber hasta donde 
+ hay que trasladar la carga, dependiendo del número de columna a la que hay 
+ que ir.
+ 
+ \item Posición inicial de la carga: $yl0 =  hContainer + 1$
+ 
+ La posición inicial de la carga se decidió que fuera de la altura del 
+ container más un metro de seguridad y para que el cable este cargado.
+ \item Altura máxima de la carga: $yl\_max$
+ 
+ Es la altura máxima a la que la carga puede subir. 
+ \item Altura mínima de la carga: $yl\_min = prof\_barco - 1.3$
+ 
+ Es la posición mínima que puede tener la carga, esta posición es dentro de la cubierta
+ del barco
+ \item Altura de la columna: $yt0 = 45 $
+ 
+ La viga sobre la que se desplaza el trolley esta ubicada 45 metros 
+ sobre el nivel del puerto. Es a partir de esta coordenada que el cable se desenrolla.
+ \item Número de columnas: $numColumna$
+ 
+ Esta variable tiene como objetivo poder variar el número de columnas de contenedores
+ posibles en el barco. El objetivo es poder aceptar diferentes barcos.
+ \item Número de containers por columna: $NumContainter = [0 \, 0 \, 0 \, 0 \, 0]$
+ 
+ El objetivo de este vector es guardar el número de containter existente en cada columna.
+ Esto nos permite saber hasta donde descender debido a que conocemos el alto de los 
+ contenedores evitando de esta manera colisiones.
+ \item Posición inicial del carro: $xt\_h$
+ 
+ El carro comienza quince metros dentro del puerto.
+ \item Longitud inicial de cable desenrollado:
+ 
+ $lh\_h = yt0-yl0- \dfrac{mL \, g}{Kw} $ 
+ 
+ Para asegurar una posición inicial de la carga el cable debe estar desenrollado una 
+ constante que tiene en cuenta cuanto el cable se necesita estirar para ejercer una fuerza
+ tal que contrarreste el peso de la carga. Esta expresión fue obtenida a partir de las 
+ expresiones presentadas en la sección \ref{subsec:cable}. Esto nos asegura que el cable 
+ en el instante inicial ya esta precargado y no hay movimiento del cable en la dirección
+ $y$.
+ 
+ \item Longitud mínima de cable desenrollado: 
+ 
+ $lh\_min = yt0 - yl\_max-\dfrac{mL \, g}{Kw}$
+ 
+ Para asegurar que la carga no va a superar su posición máxima definida en la variable
+ $yl_max$, debemos tener en cuenta al momento de enrollar el cable cuanto necesito que este
+ se estire para contrarrestar el peso de la carga.
+ 
+ \item Posición objetivo del carro:
+ 
+ $xt\_g= (numColumna + 0.5) \, wContainer$
+ 
+ La posición final del carro depende del numero de columna  a la que deba ir la carga.
+ \item Longitud objetivo del cable desenrollado:
+
+ $lh\_g = yt0 + yl\_min $
+ $-  (hContainer \, numContainer \, (numColumna))$
+ $- \dfrac{mL \, g}{Kw}$
+ 
+ Para dejar la carga cerca del lugar deseado en donde el operador toma el mando de la
+ grúa para proceder con la descarga debemos tener en cuenta el número de containers que
+ se encuentran depositados y cuanto se va a estirar el cable.
+ 
+ \item Fuerza de precarga: $Fh0$
+ 
+ Como se explicará en la sección \ref{sec:rescontrolador} en el controlador se utilizó una
+ fuerza de precarga para no sufrir un descenso de la carga cuando se comienza un recorrido
+ y es el control automático el que toma el mando.
+ 
+\end{itemize}
+
+\subsection{Limitador de velocidad y aceleración}
+\label{sec:limites}
+Una de las imposiciones del trabajo es un límite en la velocidad y la aceleración como se
+mencionó en el capítulo \ref{sec:fisica}.
+
+Para poder asegurar no superar los límites de velocidad la consigna de posición no puede 
+ser un salto en escalón y su razón de cambio no puede superar los valores dados como 
+objetivo. 
+Por otro lado para cumplir con los límites de velocidad impuestos la consigna de velocidad 
+no puede ser un salto en escalón y su razón de cambio debe estar limitada.
+
+En la fig. \ref{fig:bloque_consigna_pos} se puede observar el bloque en Matlab-Simulink
+que nos entrega una consigna de posición con las características necesarias para no
+superar los límites de velocidad y aceleración.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{bloque_consigna_posicion.jpeg}
+  \caption{Bloque Matlab-Simulink para la consigna de posición.}
+  \label{fig:bloque_consigna_pos} 
+\end{figure}
+
+La consigna de posición entregada al controlador, resultado del bloaque de Matlab 
+se observa en la fig. \ref{fig:consigna_pos}. En esta se observan como al iniciar y
+al finalizar el desplazamiento se describen dos parábolas debido al limite de 
+aceleración y se forma una rampa en el centro por la limitación de la velocidad.
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consigna_posicion.jpeg}
+  \caption{Gráfico de la consigna de posicíon en funcion del tiempo}
+  \label{fig:consigna_pos}
+\end{figure}
+
+Por último en la fig.\ref{fig:atenuaciona} se observa la aceleración al describir 
+la trayectoria anterior, cumpliendo con las condiciones demandadas y en la fig. \ref{fig:atenuacionv} se 
+muestran los resultados para la velocidad. Esta pertenece al sistema de izaje.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{atenuaciona.jpeg}
+  \caption{Gráfico de la limitación de la aceleración}
+  \label{fig:atenuaciona}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{atenuacionv.jpeg}
+  \caption{Gráfico de la limitación de la velocidad}
+  \label{fig:atenuacionv}
+\end{figure}
 
 \subsection{Controladores de tipo PID}
 Luego de analizar el modelo físico se procedió a realizar un controlador por cada motor.
@@ -882,15 +1035,15 @@ velocidad, la cual era seguida de acuerdo a un bucle de control PID. Entre las v
 que encontramos en esta solución se encontraba una parada de emergencia sencilla, debido
 a que era suficiente con enviar una consigna de velocidad cero. Sin embargo luego
 de analizar aquellos resultados se decidió enviar desde el supervisor consignas de 
-posición, las cuales son alcanzadas a través de un controlador de tipo PID. Se decidió esto
-luego de analizar otros métodos.
+posición, las cuales son alcanzadas a través de un controlador de tipo PID. 
+Se decidió este tipo de controlador luego de analizar otros métodos.
 
 La acción de control PID es el resultado de la suma de una ganancia proporcional multiplicada
 por el error, una ganancia integral multiplicada por la integral del error y una ganancia
 derivativa multiplicada por la derivada del mismo.
 
-Se demostrará el camino seguido para obtener el valor de las ganancias para uno de los
-motores dado que la metodología es la misma en ambos casos. Para poder obtener este
+Se demostrará de manera general el camino seguido para obtener el valor de las ganancias para 
+los controladores dado que la metodología es la misma en ambos casos. Para poder obtener este
 controlador se opero de la siguiente manera:
 
 \subsubsection{Análisis del sistema}
@@ -929,15 +1082,15 @@ unitaria $G_T(s)$ por las condiciones del mismo (ancho de banda muy grande en
 comparación con el sistema controlado), el torque motor $T_m$ es igual a
  \begin{align}
 %   (J_m \,s^2 \, + \,b\, s) \theta (s) &= T_m (s) - T_l (s)\\
-   T_m (s) &= G_T (s) \big[ k_p + k_d \, \dfrac{1}{s} + \,k_p \,s] \, e_\theta (s) \\
-   T_m (s) &= G_T (s) \big[ k_p + k_d \, \dfrac{1}{s} + \,k_p \,s] \, [\theta^* (s) \,-\, \theta (s)]
+   T_m (s) &= G_T (s) \big[ k_p + k_i \, \dfrac{1}{s} + \,k_d \,s] \, e_\theta (s) \\
+           &= G_T (s) \big[ k_p + k_i \, \dfrac{1}{s} + \,k_d \,s] \, [\theta^* (s) \,-\, \theta (s)]
  \end{align}
 
 Igualando y operando matemáticamente $T_m$, se obtienen las siguientes funciones
 de transferencia:
 
  \begin{align}
-    \dfrac{\theta(s)}{\theta^*(s)} = \dfrac{G_T(s)\big[k_d s^3 + k_p s^2 + k_i]}{J_m s^3 + [b_m + G_T(s) k_d] s^2 + G_T (s)[k_p s + k_i]}\\
+    \dfrac{\theta(s)}{\theta^*(s)} = \dfrac{G_T(s)\big[k_d s^2 + k_p s + k_i]}{J_m s^3 + [b_m + G_T(s) k_d] s^2 + G_T (s)[k_p s + k_i]}\\
     \dfrac{\theta}{T_l} = - \dfrac{s}{J_m s^3 + [b_m + G_T(s) k_d] s^2 + G_T(s)[k_p s + k_i]}
  \end{align}
  
@@ -980,19 +1133,336 @@ Ganancia derivativa:
 \begin{align}
   k_d = (2 \xi {\omega}_n - P_1) J_m - b_m
 \end{align}
+Aplicando estas expresiones a los modelos físicos de la sección \ref{sec:mecTras} y 
+\ref{sec:mecIza} tenemos:\\
+Mecanismo de traslación
+\begin{align}
+  k_p &= ({{\omega}_n}^2 - 2 \xi {\omega}_n P_1) M_t\\
+  k_i &= (P_1 {{\omega}_n}^2) M_t\\
+  k_d &= (2 \xi {\omega}_n - P_1) M_t - b_t
+\end{align}
+Mecanismo de izaje
+\begin{align}
+  k_p &= ({{\omega}_n}^2 - 2 \xi {\omega}_n P_1) M_h\\
+  k_i &= (P_1 {{\omega}_n}^2) M_h\\
+  k_d &= (2 \xi {\omega}_n - P_1) M_h - b_h
+\end{align}
 
-\subsection{Resultados del Controlador}
-Sobre cada uno de los siguientes controladores se realizaron pruebas que
-entregaron los resultados que se muestran a continuación:
+
+
+\subsection{Parada de emergencia}
+Sistemas de gran envergadura presentan frenos mecánicos para no estar forzando el motor
+y tener una mayor seguridad. Se pensó en este trabajo que en una situación de riesgo
+es necesario detener el sistema de forma segura antes de aplicar los frenos mecánicos.
+
+Dado que el controlador que acabamos de describir solo controla posición, 
+no nos daba la seguridad de detener los motores de manera sencilla y rápida. 
+Decidimos realizar un controlador de tipo PID 
+pero de velocidad. Este sistema actúa solamente en caso de emergencia. A continuación se 
+detalla el esquema de Matlab-Simulink (Ver Fig.\ref{fig:ControlVel}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%imagen del control de velocidad
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Test_Controlador_emergencia1.jpeg}
+  \caption{Diagrama del controlador de posición y de velocidad(Emergencia)}
+  \label{fig:ControlVel}
+\end{figure}
+
+Para poder obtener las ganancias se siguió el método de Ziegler-Nichols en el que se 
+realiza un análisis de la respuesta del sistema a una perturbación en escalón.
+
+Como se explicara en la sección \ref{sec:MaqEstados}, mediante la bandera "Emergencia" 
+se tienen la capacidad de decir que controlador tiene el mando del sistema y su 
+correspondiente consigna.
+
+Analizando los resultados anteriores se busco otra solución en la cual se retroalimenta 
+el estado actual del sistema como consigna del controlador. De esta manera el error es 
+cero. Se debe tener en cuenta la perturbación $F_w$ y es por ello que la consigna que 
+llegue al modulador de torque $G_t$ debe ser igual igual a esta. Ver Fig.
+\ref{fig:testVel} 
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Controlador_precarga_velocidad.jpeg}
+  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga y sistema de 
+  emergencia}
+  \label{fig:testVel}
+\end{figure}
+
+Observando las soluciones propuestas y los resultados obtenidos se descubrió que esta 
+retroalimentación podía hacerse directamente en la máquina de estados. Para ello se debe
+enviar como consigna de posición la posición actual al momento de entrar al estado 
+emergencia.
+Esto se explicará en el capítulo \ref{sec:MaqEstados}. En la fig. \ref{fig:paradaemergencia} se muestra
+la consigna $cons\_xt=xt$ donde $xt$ es la retroalimentación de la posición y $cons\_lh=lh$
+donde $lh$ es la retroalimentación de los metros desenrollados de cable.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=1in]{parad_de_emergencia_state.jpeg}
+  \caption{Imagen del estado emergencia en la máquina de estados}
+  \label{fig:paradaemergencia}
+\end{figure}
+
+
+\subsection{Análisis en tiempo discreto}
+Hasta este momento hemos presentado nuestro trabajo en el controlador en tiempo continuo.
+El objetivo de este trabajo es presentar una solución digital y es por ello que se adaptó
+el modelo de Matlab de tiempo discreto a digital, cumpliendo con las necesidades del
+trabajo. 
+
+La adaptación que se realizo fue la siguiente:
+\begin{itemize}
+ \item Debemos discretizar los valores de la entrada. En esta nueva situación del sistema 
+vamos a dividir el tiempo continuo en pequeños intervalos, esto nos inhibe de conocer
+el estado del sistema en cada momento. Al diseñar un controlador digital asumimos este
+riesgo y se deben tomar los recados necesarios para cumplir con nuestros objetivos de 
+seguridad brindando un sistema fiable. Esto se resume a realizar un sistema de control 
+lo suficientemente rápido en función de la variación de las variables del proceso.
+
+El teorema de muestreo nos dice que el tiempo de muestreo debe ser:
+
+$ f_s > 2*BWcontrolador $
+
+En la práctica esta relación es aún mayor.
+
+\item A su vez la salida de un sistema digital es discreta. Esto implica 
+que nuestro sistema de control presenta una salida escalonada. Por ende, 
+actuando, sobre el sistema de manera diferente a un sistema continuo. Otra 
+vez es importante tener en cuenta el tiempo con el cual el controlador actualiza
+la señal de salida.
+\end{itemize}
+
+Se presenta a continuación el camino para transformar un PID continuo a uno discreto:
+\begin{itemize}
+
+ \item Acción integral
+  \begin{align}
+    u_i (t) =& {k_i \int\limits_0^t e(t) dt} + u_{i0}
+    \intertext{Para un instante de muestreo:} \
+    u_i (t_k) =& k_i \big[{\int\limits_{0}^{t_k} e(t) dt} + I_0] \\
+              =& k_i \big[\int\limits_{t_{k-1}}^{t_k} e(t) dt + \int\limits_0^{t_{k-1}} e(t) dt + I_0]\\
+    u_i(t_{k-1}) =&  k_i \int\limits_0^{t_{k-1}} e(t) dt + I_0 \\
+    u_i (t_k) =& k_i \int\limits_{t_{k-1}}^{t_k} e(t) dt + u_i (t_{k-1})\\
+              =& k_i~e(t)~T_s + u_i (t_{k-1})
+    \end{align}
+ \item Acción derivativa
+  \begin{align}
+    u_d (t_k) =& k_d \dfrac{d\,e(t_k)}{dt}\\
+              =& k_d \dfrac{e(t_k)-e(t_{k-1})}{Ts}
+  \end{align}
+\end{itemize}
+Donde $T_s$ es el tiempo de muestreo igual a $T_s=\dfrac{10}{\omega_n}$
+En la Fig.\ref{fig:controlador} se observa el diagrama de bloques de un 
+controlador discreto.
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics{controlador_posicion.jpeg}
+  \caption{Diagrama de bloques de un controlador discreto}
+  \label{fig:controlador}
+\end{figure}
+
+
+\subsection{Adaptación del programa en Matlab-Simulink}
+Se deben agregar dos bloques de función en el programa de Matlab para transformar nuestro 
+controlador en tiempo continuo al discreto.
+\begin{itemize}
+\item Al ingreso del controlador: Rate Transition(Ver Fig.\ref{fig:rate})
+\begin{figure}[!t]
+ \centering
+  \includegraphics{rate.jpeg}
+  \caption{Bloque Rate Transition}
+  \label{fig:rate}
+\end{figure}
+
+De acuerdo a la descripción de Matlab el bloque se encarga de transferir datos 
+entre sistemas que trabajan a una frecuencia diferente. El trabajo del bloque es mantener a 
+la salida un valor que se encontraba a la entrada en el momento del muestreo.
+
+
+\item A la salida del controlador: Zero-order hold (Ver Fig.\ref{fig:zero})
+\begin{figure}[!t]
+ \centering
+  \includegraphics{zero_order.jpeg}
+  \caption{Bloque Zero Order Hold }
+  \label{fig:zero}
+\end{figure}
+Según Matlab el bloque retiene su entrada durante un período de tiempo especificado.
+\end{itemize}
+
+Con estos dos elementos ademas de la transformación de las acciones proporcionales, 
+integrales y derivativas se realizó el controlador en tiempo discreto.
+
+\subsection{Máquina de estados finitos}
+\label{sec:MaqEstados}
+Una máquina de estados puede describirse como el modelo de comportamiento de un sistema
+en que los sucesivos estados dependen al mismo tiempo de las entradas del sistema y 
+del estado en el que se encuentra. 
+
+Para poder realizar la máquina se realizaron tres versiones hasta poder obtener el
+resultado final. A continuación se presenta una breve descripción de las mismas.
+
+\begin{itemize}
+ \item En la primera versión se busco que la máquina fuera capaz de ubicar la carga en 
+ el barco. Lo que debía realizar luego de salir del estado manual (en el que el operario
+ toma la carga) es ir a una posición conocida y segura, para a partir de ese momento 
+ comenzar a avanzar, desde este punto hasta el punto más alto permitido. A partir de 
+ este momento se comienza a trasladar el carro en el eje $x$, hasta su posición final en el 
+ eje x, y por ultimo comienza su descenso hasta la posición final en el eje y. El ultimo estado
+ era nuevamente manual, donde el operario debería dejar la carga.
+ 
+ \item La segunda versión de la máquina de estados tomaba lo realizado en la primera versión 
+ pero además agregaba un grupo de estados que representaban el camino de regreso, ascenso el el
+ eje y, traslación en el eje $x$ y descenso hasta el muelle. El problema general se concibe de
+ manera que la grúa siempre va a realizar un ciclo completo, ida hacia el barco y regreso al muelle. 
+ 
+ \item La tercer y ultima versión hasta el momento se le agregan las señales de emergencia en las 
+ que detienen el sistema y le avisan al operario que el sistema no esta respondiendo de una manera
+ esperada.
+ 
+\end{itemize}
+
+
+La máquina de estados realizada se describe en su forma de
+diagrama de estados finitos en la Fig.\ref{fig:dig_control}. A continuación y haciendo 
+referencia a los nombres de este diagrama se detalla el comportamiento en modo automático 
+de nuestra grúa tipo pórtico:
+
+Tomando como inicio el momento en el cual el operario, después de haber intervenido en 
+el proceso de enganche y primera elevación de la carga, pone el sistema en modo 
+automático, este responde de la siguiente manera:
+\begin{itemize}
+ \item $Automatic~Control$: Entrada en el Modo Automático. Nuestro sistema viene de
+ haber estado controlado por el operario y por ello es necesario que el sistema se 
+ reoriente para cumplir con su tarea. Para esto evalúa si su posición actual es 
+ próxima a alguna de sus dos posiciones conocidas:
+ \begin{itemize}
+  \item $Home$: Un punto ubicado sobre el muelle a una altura por encima del 
+  area de trabajo usual del operario.
+  \item $Goal$: El punto de destino sobre el barco para depositar la carga que se esta
+  transportando.
+ \end{itemize}
+ Si ninguna de las dos posiciones se encontraran cerca esto es considerado como un error 
+ del operario que ha accionado el modo automático y el autómata entra el modo
+ de $Emergency$.
+ \item $Approach~Home$ y $Approach~Goal$: Estando cerca de los puntos conocidos  
+ ($Near~Home$ y $Near~Goal$) nos acercamos a estos.
+ \item $Home~Climb$ y $End~Climb$: A continuación, tras encontrarnos en un punto conocido 
+ y seguro $At~Home$ y $At~Goal$ procedemos a desplazarnos
+ en el eje $Y$ hasta la posición mas alta $Highest$.
+ \item $Go$ y $Return$: Al alcanzar la coordenada de mayor altura de nuestra 
+  estructura $Highest$ es seguro proceder a desplazarnos en el eje $X$ hasta la posición 
+  del destino sobre este eje: $ X~Goal$ y $X~Home$ respectivamente.
+ \item $Descend~Goal$ y $Descend~Home$: al encontrarnos por encima de nuestro destino 
+ podemos descender de manera segura hasta alcanzar la posición $At~Goal$ y $At~Home$
+ en cada caso.
+ \item $Wait$: Luego de haber llegado al destino esperamos la señal del 
+ operador $Manual$ para dar paso al control manual del sistema.
+  \item $Emergency$: Como se describió una situación anormal del sistema lleva al mismo
+  a un estado de emergencia el cual detiene los motores. Pero no solo una situación del
+  sistema lleva a este estado, también el operario puede llevar al sistema al estado
+  emergencia mediante la activación de un switch. Para salir de este estado el operario
+  debe dar la señal de que se tiene conocimiento de que el sistema entro a un estado de 
+  emergencia y pasará de esta forma a un estado manual, siguiendo así con su funcionamiento
+  normal.
+\end{itemize}
+
+\begin{figure*}[!t]
+  \centering 
+  %\resizebox{2.5in}{!}{    
+      \begin{tikzpicture}[node distance = 2.5 cm, auto]
+	  % Nodes
+	  \node [initial,block] (init) {Manual Control};
+	  \node [block, below of=init] (auto) {Automatic Control};
+	  \node [block, below of=auto, node distance = 4cm] (emergency) {Emergency};
+	  \node [block, left of=auto,node distance = 5 cm] (apHome) {Approach Home};
+	  \node [block, below of = apHome] (upHome) {Home Climb};
+	  \node [block, below of= upHome] (go) {Go};
+	  \node [block, below of= go] (descendEnd) {Descend Goal};
+	  \node [block, right of= auto, node distance = 5 cm] (apEnd) {Approach Goal};
+	  \node [block, below of= apEnd] (upEnd) {End Climb};
+	  \node [block, below of= upEnd] (return) {Return};
+	  \node [block, below of= return] (descendHome) {Descend Home};
+	  \node [block, below of= emergency, node distance = 5 cm] (end) {Wait};
+	  %Uso Normal
+	  \path [line] (init) -- node {Auto} (auto);
+	  \path [line] (auto) -- node {Near Home} (apHome); 
+	  \path [line] (apHome) -- node {At Home} (upHome);
+	  \path [line] (upHome) -- node {Highest} (go);
+	  \path [line] (go) -- node {X Goal} (descendEnd);
+	  \path [line] (descendEnd) -- node {At Goal} (end);
+	  \path [line] (auto) -- node {Near Goal} (apEnd);
+	  \path [line] (apEnd) -- node {At Goal} (upEnd);
+	  \path [line] (upEnd) -- node {Highest} (return);
+	  \path [line] (return) -- node {X Home} (descendHome);
+	  \path [line] (descendHome) -- node {At Home} (end);
+	  %Emergencia
+	  \path [line] (auto) -- node {Away} (emergency);
+	  \path [line] (apHome) -- node {Away} (emergency);
+	  \path [line] (upHome) -- node {Away} (emergency);
+	  \path [line] (go) -- node {Away} (emergency);
+	  \path [line] (descendEnd) -- node {Away} (emergency);
+	  \path [line] (apEnd) -- node {Away} (emergency);
+	  \path [line] (upEnd) -- node {Away} (emergency);
+	  \path [line] (return) -- node {Away} (emergency);
+	  \path [line] (descendHome) -- node {Away} (emergency);
+	  %Cierre del bucle
+	  \path (end) edge[bend left=120,looseness=2] node[fill=white] {Manual} (init);
+	  \path (emergency) edge[bend right=90,looseness=2] node[fill=white] {Manual} (init);
+      \end{tikzpicture}
+  %}
+    \caption{Diagrama de flujo del controlador supervisor}
+    \label{fig:dig_control}
+\end{figure*}
+
+\subsection{Parámetros de la máquina de estados}
+
+A continuación se presentarán las constantes que se utilizan en la máquina de estados.
+Estas sirven para detectar si el sistema esta en una situación que no es normal
+y lo lleva a un estado de emergencia enviando una señal al operario y para saber en que estado
+debe ingresar.
+
+
+\begin{itemize}
+ \item Margen de error de posición en la traslación: 
+ 
+ $marg\_xt$
+ \item Margen de error para situación de emergencia en la traslación:
+ 
+ $marg\_xt\_g$
+  \item Margen de error de posición en el cable desenrollado: 
+ 
+ $marg\_lh$
+ \item Margen de error para situación de emergencia en el cable desenrollado:
+ 
+ $marg\_lh\_g$
+ 
+\end{itemize}
+
+\section{Resultados}
+
+El trabajo se dividió de manera de ir trabajando en la máquina de estado y en el
+control de los motores de forma independiente. De esta manera pudimos avanzar 
+en paralelo en el desarrollo de ambos sistemas.
+
+\subsection{Respuesta a un escalón unitario}
+\label{sec:rescontrolador}
+Para comprobar el correcto funcionamiento de los controladores se realizaron
+ensayos con consignas en escalón. Los resultados se presentan a continuación:
 \begin{itemize}
  \item Traslación del Trolley (Ver Fig.\ref{fig:testx}).
  La respuesta de este controlador a un escalón unitario se puede
  observar en la Fig.\ref{fig:resx}
  \item Izaje de la carga(Ver Fig.\ref{fig:testy}).
- El controlador arrojo los resultados que se observan en la Fig.\ref{fig:resy}. 
- Donde se observa un descenso de la carga en los primero instantes debido a la 
+ El controlador ante una consigna en escalón arrojo los resultados que se 
+ observan en la Fig.\ref{fig:resy}. 
+ Donde se puede ver un descenso de la carga en los primero instantes debido a la 
  acción del peso.
- \item Izage de la carga con Compensación(Ver Fig.\ref{fig:testyComp}).
+ \item Izaje de la carga con Compensación(Ver Fig.\ref{fig:testyComp}).
  En la Fig.\ref{fig:resyComp} se presentan los resultados al agregar al
  controlador la compensación por el peso de la carga. Se pueden observar mejores
  resultados debidos a este cambio. Consiguiendo así que no haya un descenso de la
@@ -1044,275 +1514,155 @@ entregaron los resultados que se muestran a continuación:
 \end{figure}
 
 
-
-\subsection{Parada de emergencia}
-Sistemas de gran envergadura presentan frenos mecánicos para no estar forzando el motor
-y tener una mayor seguridad. Se pensó en este trabajo que en una situación de riesgo
-es necesario detener el sistema de forma segura antes de aplicar los frenos mecánicos.
-
-Dado que el controlador que acabamos de describir solo controla posición, 
-no nos daba la seguridad de detener los motores de manera sencilla y rápida. 
-Decidimos realizar un controlador de tipo PID 
-pero de velocidad. Este sistema actúa solamente en caso de emergencia. A continuación se 
-detalla el esquema de Matlab-Simulink (Ver Fig.\ref{fig:ControlVel}).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%imagen del control de velocidad
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Test_Controlador_emergencia1.jpeg}
-  \caption{Diagrama del controlador de posición y de velocidad(Emergencia)}
-  \label{fig:ControlVel}
-\end{figure}
-
-Para poder obtener las ganancias se siguió el método de Ziegler-Nichols en el que se 
-realiza un análisis de la respuesta del sistema a una perturbación en escalón.
-
-Como se explicara en la sección \ref{sec:MaqEstados}, mediante la bandera "Emergencia" 
-se tienen la capacidad de decir que controlador tiene el mando del sistema y su 
-correspondiente consigna.
-
-Analizando los resultados anteriores se busco otra solución en la cual se retroalimenta 
-el estado actual del sistema como consigna del controlador. De esta manera el error es 
-cero. Se debe tener en cuenta la perturbación $F_w$ y es por ello que la consigna que 
-llegue al modulador de torque $G_t$ debe ser igual igual a esta. Ver Fig.
-\ref{fig:testVel} 
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Controlador_precarga_velocidad.jpeg}
-  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga y sistema de 
-  emergencia}
-  \label{fig:testVel}
-\end{figure}
+\subsection{Respuesta con límites de velocidad y aceleración}
+Si bien las consignas que la maquina de estados envía al controlador pueden ser representadas
+por escalones, se debe cumplir con los límites de velocidad y aceleración del sistema.
+Por esta razón, se desea saber como responde el sistema de control ante una consigna en 
+escalón que pasa por el sistema de límites de velocidad y aceleración presentados en la 
+sección \ref{sec:limites}.
 
 
-
-\subsection{Análisis en tiempo discreto}
-Hasta este momento hemos presentado nuestro trabajo en el controlador en tiempo continuo.
-El objetivo de este trabajo es presentar una solución digital y es por ello que se adaptó
-el modelo de Matlab de tiempo discreto a digital, cumpliendo con las necesidades del
-trabajo. 
-
-La adaptación que se realizo fue la siguiente:
 \begin{itemize}
- \item Debemos discretizar los valores de la entrada, en esta nueva situación del sistema 
-vamos a dividir el tiempo continuo en pequeños intervalos, esto nos inhibe de conocer
-el estado del sistema en cada momento, al diseñar un controlador digital asumimos este
-riesgo y se deben tomar los recados necesarios para cumplir con nuestros objetivos de 
-seguridad brindando un sistema fiable. Esto se resume a realizar un sistema de control 
-lo suficientemente rápido en función de la variación de las variables del proceso.
-
-El teorema de muestreo nos dice que el tiempo de muestreo debe ser:
-
-$ f_s > 2*BWcontrolador $
-
-En la práctica esta relación es aún mayor.
-
-\item A su vez la salida de un sistema digital es discreta. Esto implica 
-que nuestro sistema de control presenta una salida escalonada. Por ende 
-actuando sobre el sistema de manera diferente a un sistema continuo. Otra 
-vez es importante tener en cuenta el tiempo con el cual el controlador actualiza
-la señal de salida.
+ \item Traslación en el eje $X$. Ver Fig.\ref{fig:consposxxl}.
+ 
+ La máquina de estados enviá una consigna en escalón que el limitador de velocidad y 
+ aceleración convierte en una curva. Se observa como la carga sigue a la consigna y el
+ movimiento de péndulo de esta.
+ \item Izaje en el eje $Y$. Ver Fig.\ref{fig:consposyyl}.
+ 
+  Nuevamente, la consigna en escalón de la maquina de estados al pasar por el limitador de 
+  velocidad y aceleración se convierte en una curva. Esta es seguida por el controlador 
+  y se puede observar, también, el estiramiento sufrido por el cable.
 \end{itemize}
 
-Se presenta a continuación el camino para transformar un PID continuo a uno discreto:
-\begin{itemize}
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consx_posx_xl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x}
+  \label{fig:consposxxl}
+\end{figure}
 
- \item Acción integral
-  \begin{align}
-    u_i (t) =& {k_i \int\limits_0^t e(t) dt} + u_{i0}
-    \intertext{Para un instante de muestreo:} \
-    u_i (t_k) =& k_i \big[{\int\limits_{0}^{t_k} e(t) dt} + I_0] \\
-    u_i (t_k) =& k_i \big[\int\limits_{t_{k-1}}^{t_k} e(t) dt + \int\limits_0^{t_{k-1}} e(t) dt + I_0]\\
-    u(t_{k-1}) =&  k_i \int\limits_0^{t_{k-1}} e(t) dt + I_0 \\
-    u_i (t_k) =& k_i \int\limits_{t_{k-1}}^{t_k} e(t) dt + u_i (t_{k-1})\\
-    u_i (t_k) =& k_i~e(t)~T_s + u_i (t_{k-1})
-    \end{align}
- \item Acción derivativa
-  \begin{align}
-    u_d (t_k) = k_d \dfrac{d\,e(t_k)}{dt}\\
-    u_d (t_k) = k_d \dfrac{e(t_k)-e(t_{k-1}}{dt}
-  \end{align}
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consy_posy_yl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y}
+  \label{fig:consposyyl}
+\end{figure}
+
+
+\subsection{Control supervisor de la máquina de estados}
+A continuación, se presentan los resultados del trabajo de, es importante 
+marcar que las condiciones iniciales en estas demostraciones son las explicadas en
+la sección \ref{sec:condiniciales}.
+
+\begin{itemize}
+ \item Para comenzar la presentación de resultados se muestra en la Fig. \ref{fig:idageneral}
+ la respuesta del sistema a un ciclo de ida hacia el barco. Se intenta mostrar con esta imagen
+ el sistema de forma global. Se observan las señales enviadas desde la máquina de estados, 
+ la respuesta del sistema, así como también el gráfico descripto por la carga en su camino
+ hacia el barco en la parte inferior izquierda. También se muestran los switch que representan
+ las señales que puede enviarle el operario a la máquina.
+
+\item En la Fig. \ref{fig:consignasyrespuestasy} Se puede observar la consigna en 
+escalón enviada desde la máquina de estados, la respuesta de los controladores de 
+los motores a la consigna de posición atenuada para estar dentro de los límites de 
+velocidad y aceleración como se ve en la figura \ref{fig:atenuaciona} para el izaje
+de la carga, mientras que en la Fig. \ref{fig:consignasyrespuestasx} se muestra 
+la respuesta en la traslación.
+
+ \item En la Fig. \ref{fig:idavueltageneral} se muestra la respuesta del sistema al 
+ movimiento completo. Esto es tomar la carga, realizado de manera manual por el 
+ operario, llevarla al barco de manera automática y esperar la señal del operario
+ para poder volver al muelle.
+ 
 \end{itemize}
 
-En la Fig.\ref{fig:controlador} se observa el diagrama de bloques de un 
-controlador discreto.
+ \begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{Ida_general.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco}
+  \label{fig:idageneral}
+\end{figure}
 
 \begin{figure}[!t]
  \centering
-  \includegraphics{controlador_posicion.jpeg}
-  \caption{Diagrama de bloques de un controlador discreto}
-  \label{fig:controlador}
+  \includegraphics[width=3in]{consignasyrespuestasy.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco en el izaje}
+  \label{fig:consignasyrespuestasy}
 \end{figure}
 
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{consignasyrespuestasx.jpeg}
+  \caption{Respuesta del sistema al ciclo de ida hacia el barco en traslación}
+  \label{fig:consignasyrespuestasx}
+\end{figure}
 
-\subsection{Adaptación del programa en Matlab-Simulink}
-Se deben agregar dos bloques de función en el programa de Matlab para transformar nuestro 
-controlador en tiempo continuo al discreto.
+ \begin{figure}[!t]
+ \centering
+  \includegraphics[width=3in]{Ida_vuelta_general.jpeg}
+  \caption{Respuesta del sistema a un ciclo de carga completo}
+  \label{fig:idavueltageneral}
+\end{figure}
+
+\section{Posibles Mejoras}
+
+Hasta ahora tenemos una versión de la máquina de estados que es capaz de esperar 
+que el operario tome la carga y automáticamente la lleve al barco y volver desde el
+mismo. Se plantean tres mejoras a este modelo que se pueden sumar a nuestro desarrollo
+puesto que se han dejado las variables para ello.
+
 \begin{itemize}
-\item Al ingreso del controlador: Rate Transition(Ver Fig.\ref{fig:rate})
-\begin{figure}[!t]
- \centering
-  \includegraphics{rate.jpeg}
-  \caption{Bloque Rate Transition}
-  \label{fig:rate}
-\end{figure}
-
-De acuerdo a la descripción de Matlab el bloque se encarga de transferir datos 
-entre sistemas que trabajan a una frecuencia diferente. El trabajo del bloque es mantener a 
-la salida un valor que se encontraba a la entrada en el momento del muestreo.
-
-
-\item A la salida del controlador: Zero-order hold (Ver Fig.\ref{fig:zero})
-\begin{figure}[!t]
- \centering
-  \includegraphics{zero_order.jpeg}
-  \caption{Bloque Zero Order Hold }
-  \label{fig:zero}
-\end{figure}
-De acuerdo con la descripción de Matlab el bloque retiene su entrada durante un período
-de tiempo especificado.
-\end{itemize}
-
-Con estos dos elementos ademas de la transformación de las acciones proporcionales, 
-integrales y derivativas se realizó el controlador en tiempo discreto.
-
-\subsection{Máquina de estados finitos}
-\label{sec:MaqEstados}
-Una máquina de estados puede describirse como el modelo de comportamiento de un sistema
-en que los sucesivos estados dependen al mismo tiempo de las entradas del sistema y 
-del estado en el que se encuentra. 
-
-La máquina de estados realizada se describe en su forma de
-diagrama de estados finitos en la Fig.\ref{fig:dig_control}. 
-El comportamiento de nuestra grúa tipo portico en modo automatico se describe 
-a continuacion haciendo referencia a los nombres del diagrama de la Fig.\ref{fig:dig_control}:
-
-Tomando como inicio el momento en el cual el operario, despues de haber intervenido en 
-el proceso de enganche y primera elevacion de la carga, pone el sistema en modo 
-automatico, este responde de la siguiente manera:
-\begin{itemize}
- \item $Automatic~Control$:Entrada en el Modo Automatico. Nuestro sistema viene de
- haber estado controlado por el operario y por ello es necesario que el sistema se 
- reoriente para complir con su tarea. Para esto evalua si su posicion actual es 
- proxima a alguna de sus dos posiciones conocidas:
+ \item inteligencia al estado automático, esto es conocer la posición final de traslación
+ teniendo en cuenta dos situaciones:
  \begin{itemize}
-  \item $Home$: Un punto hubicado sobre el muelle a una altura por encima del 
-  area de trabajo usual del operario.
-  \item $Goal$: El punto de destino sobre el barco para depositar la carga que se esta
-  transportando.
+  \item Carga secuencial en el eje x, cargar en la columna 1, luego la 2 y así sucesivamente.
+  \item Carga completamente la columna 1 y luego completamente la 2 y así sucesivamente.
  \end{itemize}
- Si ninguna de las dos posiciones se encontraran cerca esto es considerado como un error 
- del operario que ha accionado el modo automatico por error y el automata entra el modo
- de $Emergency$.
- \item $Approach~Home$ y $Approach~Goal$: En ambos estados nos acercamos a los puntos conocidos
- $Home$ y $Goal$ respectivamente.
- \item $Home~Climb$ y $Approach~Climb$: A continuación, tras encontrarnos en un punto conocido 
- y seguro $At~Home$ y $At~Goal$ procedemos a desplazarnos
- en el eje $Y$ hasta la posicion mas alta $Highest$.
- \item $Go$ y $Return$: Al alcanzar la posicion mas alta de nuestra estructura es seguro
- proceder a desplazarnos en el eje $X$ hasta la posicion sobre este eje de $ X~Goal$ y 
- $X~Home$ respectivamente.
- \item $Descend~Goal$ y $Descend~Home$ al encontrarnos por encima de nuestro objetivo 
- podemos descender de manera segura hasta alcanzar la posicion $At~Goal$ y $At~Home$
- en cada caso.
- \item $Wait$ Luego de haber llegado a la posición deseada esperamos la señal del 
- operador $Manual$ para dar paso al control manual del sistema.
+ 
+ \item Realizar trayectorias curvas que le permitan al operario que la carga y la descarga 
+ se realicen más rápidamente.
+ 
+ \item Detección de carga, discriminando si estamos cargando o descargando, siendo capaces
+ de esta manera de avanzar más rápido si no hay carga.
 \end{itemize}
 
 
-
-%\begin{figure*}[!t]
-%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
-%\label{fig_second_case}}}
-%\caption{Simulation results}
-%\label{fig_sim}
-%\end{figure*}
-
-\begin{figure*}[!t]
-  \centering 
-  %\resizebox{2.5in}{!}{    
-      \begin{tikzpicture}[node distance = 2.5 cm, auto]
-	  % Nodes
-	  \node [initial,block] (init) {Manual Control};
-	  \node [block, below of=init] (auto) {Automatic Control};
-	  \node [block, below of=auto, node distance = 4cm] (emergency) {Emergency};
-	  \node [block, left of=auto,node distance = 5 cm] (apHome) {Approach Home};
-	  \node [block, below of = apHome] (upHome) {Home Climb};
-	  \node [block, below of= upHome] (go) {Go};
-	  \node [block, below of= go] (descendEnd) {Descend Goal};
-	  \node [block, right of= auto, node distance = 5 cm] (apEnd) {Approach Goal};
-	  \node [block, below of= apEnd] (upEnd) {End Climb};
-	  \node [block, below of= upEnd] (return) {Return};
-	  \node [block, below of= return] (descendHome) {Descend Home};
-	  \node [block, below of= emergency, node distance = 5 cm] (end) {Wait};
-	  %Uso Normal
-	  \path [line] (init) -- node {Auto} (auto);
-	  \path [line] (auto) -- node {Near Home} (apHome); 
-	  \path [line] (apHome) -- node {At Home} (upHome);
-	  \path [line] (upHome) -- node {Highest} (go);
-	  \path [line] (go) -- node {X Goal} (descendEnd);
-	  \path [line] (descendEnd) -- node {At Goal} (end);
-	  \path [line] (auto) -- node {Near Goal} (apEnd);
-	  \path [line] (apEnd) -- node {At Goal} (upEnd);
-	  \path [line] (upEnd) -- node {Highest} (return);
-	  \path [line] (return) -- node {X Home} (descendHome);
-	  \path [line] (descendHome) -- node {At Home} (end);
-	  %Emergencia
-	  \path [line] (apHome) -- node {Away} (emergency);
-	  \path [line] (upHome) -- node {Away} (emergency);
-	  \path [line] (go) -- node {Away} (emergency);
-	  \path [line] (descendEnd) -- node {Away} (emergency);
-	  \path [line] (apEnd) -- node {Away} (emergency);
-	  \path [line] (upEnd) -- node {Away} (emergency);
-	  \path [line] (return) -- node {Away} (emergency);
-	  \path [line] (descendHome) -- node {Away} (emergency);
-	  %Cierre del bucle
-	  \path (end) edge[bend left=120,looseness=2] node[fill=white] {manual} (init);
-      \end{tikzpicture}
-  %}
-    \caption{Diagrama de flujo del controlador supervisor}
-    \label{fig:dig_control}
-\end{figure*}
-
-
-
+\newpage 
 \section{Conclusión}
 El trabajo tuvo como objetivo realizar un controlador aplicable a los requerimientos
 industriales, por ende se tuvieron en cuenta diferentes aspectos de seguridad y 
-necesidades que en ese ambito se requieren.
+necesidades que en ese ámbito se requieren.
 
 Es el proyecto integrador de la materia en el que se busco poner en práctica los diferentes
-aspectos vistos durante en año.
+aspectos vistos durante el año.
 
 Hemos destacado dos grande bloques o partes del trabajo:
 
 \begin{itemize}
 
-\item Controlador en tiempo discreto.
-
+\item Controlador en tiempo discreto.\\
 Es un controlador de más bajo nivel, adaptado como se ha mencionado a las necesidades
 digitales.
 
-\item Máquina de estados finitos.
+\item Máquina de estados finitos.\\
+Como controlador global, notamos que al programar en este nivel de abstracción, indudablemente
+más alto, es mucho más fácil tener en cuenta diferentes situaciones que pueden suceder
+en el sistema. 
 
 \end{itemize}
 
-Como controlador global, notamos que al programar en este nivel de abtracción, indudablemente
-más alto, es mucho más facil tener en cuenta diferentes situaciones que pueden suceder
-en el sistema. Al trabajar de esta manera pudimos ser capaces de hacer crecer nuestro sistema
-de control agregandole estados que en un principio no habiamos tenido en cuenta.
+Al trabajar de esta manera pudimos ser capaces de hacer crecer nuestro sistema
+de control agregándole estados que solucionaran situaciones 
+que en un principio no habíamos tenido en cuenta.
 
 Como resultado del trabajo podemos demostrar las ventajas que presenta realizar máquinas
-de estados finitos en problemas en los que pueden existir situaciónes concurrentes y
+de estados finitos en problemas en los que pueden existir situaciones concurrentes y
 el camino a seguir depende del estado del sistema.
-Para destacar en este trabajo es importante destacar que la seguridad ha sido uno de
-los factores tenidos en cuenta.
+
+Finalmente, es importante destacar que la seguridad ha sido el factor sobre el que mas 
+se ocupo en este trabajo, debido a las graves implicancias que tendría un accidente con este 
+tipo de cargas y estructuras.
 
 
 
@@ -1380,21 +1730,23 @@ los factores tenidos en cuenta.
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
+\bibitem{}
 Katsuhiko~Ogata, \emph{Modern Control Engineering}, 5th~ed.\relax Editorial:Pearson.
-\bibitem{IEEEhowto:kopka}
+\bibitem{}
 Julián Gabriel, \emph{Apuntes y Material de la Cátedra},
 \relax Automática y Maquinas Eléctricas, 2013.
-\bibitem{IEEEhowto:kopka}
+\bibitem{}
 Julián Gabriel, \emph{Apuntes y Material de la Cátedra},
 \relax Autómatas y Control Discreto , 2013.
-
+\bibitem{}
+University of Michigan, \emph{Control Tutorials for Matlab \& Simulink},\\
+\relax \url{http://ctms.engin.umich.edu/CTMS}.
 \end{thebibliography}
 
 % biography section
 % 
 % If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
+% needed around the contents of the optional argument to biography to prevent 
 % the LaTeX parser from getting confused when it sees the complicated
 % \includegraphics command within an optional argument. (You could create
 % your own custom macro containing the \includegraphics command to make things

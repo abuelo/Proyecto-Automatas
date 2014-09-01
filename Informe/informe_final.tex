@@ -820,7 +820,7 @@ en $b_t$, coeficiente viscoso del mecanismo de traslación.
     F_t &= \dfrac{T_{m} i}{R_{w}} \\
     b_t &= \dfrac{b_{eqm} i^2}{{R_{w}}^2}
 \end{align}
-Siendo $T_{m}$, el torque motor, nuestra variable controlada en el sistema.
+Siendo $T_{m}$, el torque motor, nuestra variable manipulada en el sistema.
 
 \subsubsection{Mecanismo de Izaje}
 \label{sec:mecIza}
@@ -835,9 +835,9 @@ en $b_h$ coeficiente viscoso del mecanismo de izaje.
     \intertext{Donde:}
     M_h &= \dfrac{J_{d}+J_{m} i^2}{R_{d}^2} \\
     F_h &= \dfrac{T_{m} i}{R_{d}} \\
-    b_h &= \dfrac{b_{eqm} i^2}{{R_{d}}^2} &= 
+    b_h &= \dfrac{b_{eqm} i^2}{{R_{d}}^2} 
 \end{align}
-Siendo $T_{m}$, el torque motor, nuestra variable controlada en el sistema.
+Siendo $T_{m}$, el torque motor, nuestra variable manipulada en el sistema.
 En la Fig.\ref{fig:fisica} se muestra el modelo en diagrama de bloques en Simulink.
 \begin{figure}[!t]
  \centering
@@ -883,8 +883,8 @@ su peso, el modelo matemático es el siguiente:
 \subsection{Condiciones iniciales y  paŕametros del sistema}
 \label{sec:condiniciales}
 
-Para poder comenzar a realizar los controladores se debe conocer cuales serán las condiciones
-iniciales de nuestro modelo.
+Para poder comenzar a realizar los controladores se debe conocer cuales serán 
+las condiciones iniciales de nuestro modelo.
 
 \begin{itemize}
  \item Profundidad del barco: $prof \_ barco$
@@ -897,12 +897,14 @@ iniciales de nuestro modelo.
  número de contariners dejados.
  \item Ancho del container: $wContainer$
  
- Esta variable sirve para saber hasta donde hay que trasladar la carga, dependiendo del 
- número de columna de contariners a la que hay que ir.
+ Esta variable sirve para apartir del ancho del container saber hasta donde 
+ hay que trasladar la carga, dependiendo del número de columna a la que hay 
+ que ir.
  
  \item Posición inicial de la carga: $yl0 =  hContainer + 1$
  
- La posición inicial de la carga se decidió fuera de la altura del container más un metro.
+ La posición inicial de la carga se decidió que fuera de la altura del 
+ container más un metro de seguridad y para que el cable este cargado.
  \item Altura máxima de la carga: $yl\_max$
  
  Es la altura máxima a la que la carga puede subir. 
@@ -912,7 +914,8 @@ iniciales de nuestro modelo.
  del barco
  \item Altura de la columna: $yt0 = 45 $
  
- La viga esta ubicada 45 metros sobre del nivel del puerto.
+ La viga sobre la que se desplaza el trolley esta ubicada 45 metros 
+ sobre el nivel del puerto. Es a partir de esta coordenada que el cable se desenrolla.
  \item Número de columnas: $numColumna$
  
  Esta variable tiene como objetivo poder variar el número de columnas de contenedores
@@ -925,33 +928,35 @@ iniciales de nuestro modelo.
  \item Posición inicial del carro: $xt\_h$
  
  El carro comienza quince metros dentro del puerto.
- \item Longitud inicial de cable desenrrollado:
+ \item Longitud inicial de cable desenrollado:
  
  $lh\_h = yt0-yl0- \dfrac{mL \, g}{Kw} $ 
  
- Para asegurar una posición inicial de la carga el cable debe estar desenrrollado una 
+ Para asegurar una posición inicial de la carga el cable debe estar desenrollado una 
  constante que tiene en cuenta cuanto el cable se necesita estirar para ejercer una fuerza
- tal que contrareste el peso de la carga. Esta expresión fue obtenida a partir de las 
+ tal que contrarreste el peso de la carga. Esta expresión fue obtenida a partir de las 
  expresiones presentadas en la sección \ref{subsec:cable}. Esto nos asegura que el cable 
  en el instante inicial ya esta precargado y no hay movimiento del cable en la dirección
  $y$.
  
- \item Longitud mínima de cable desenrrollado: 
+ \item Longitud mínima de cable desenrollado: 
  
  $lh\_min = yt0 - yl\_max-\dfrac{mL \, g}{Kw}$
  
  Para asegurar que la carga no va a superar su posición máxima definida en la variable
  $yl_max$, debemos tener en cuenta al momento de enrollar el cable cuanto necesito que este
- se estire para contrarestar el peso de la carga.
+ se estire para contrarrestar el peso de la carga.
  
- \item Posición final del carro:
+ \item Posición objetivo del carro:
  
  $xt\_g= (numColumna + 0.5) \, wContainer$
  
  La posición final del carro depende del numero de columna  a la que deba ir la carga.
- \item Longitud máxima de cable desenrrollado:
- 
- $lh\_g= yt0 + yl\_min -  (hContainer \, numContainer \, (numColumna)) - \dfrac{mL \, g}{Kw}$
+ \item Longitud objetivo del cable desenrollado:
+
+ $lh\_g = yt0 + yl\_min $
+ $-  (hContainer \, numContainer \, (numColumna))$
+ $- \dfrac{mL \, g}{Kw}$
  
  Para dejar la carga cerca del lugar deseado en donde el operador toma el mando de la
  grúa para proceder con la descarga debemos tener en cuenta el número de containers que
@@ -960,14 +965,15 @@ iniciales de nuestro modelo.
  \item Fuerza de precarga: $Fh0$
  
  Como se explicará en la sección \ref{sec:rescontrolador} en el controlador se utilizó una
- fuerza de precarga para no sufrir un descenso de la carga cuando se comienza un recorrido.
+ fuerza de precarga para no sufrir un descenso de la carga cuando se comienza un recorrido
+ y es el control automático el que toma el mando.
  
 \end{itemize}
 
 \subsection{Limitador de velocidad y aceleración}
-
-Una de las imposiciónes del trabajo es un límite en la velocidad y la aceleración como se
-mecionó en el capítulo \ref{sec:fisica}.
+\label{sec:limites}
+Una de las imposiciones del trabajo es un límite en la velocidad y la aceleración como se
+mencionó en el capítulo \ref{sec:fisica}.
 
 Para poder asegurar no superar los límites de velocidad la consigna de posición no puede 
 ser un salto en escalón y su razón de cambio no puede superar los valores dados como 
@@ -977,7 +983,7 @@ no puede ser un salto en escalón y su razón de cambio debe estar limitada.
 
 En la fig. \ref{fig:bloque_consigna_pos} se puede observar el bloque en Matlab-Simulink
 que nos entrega una consigna de posición con las características necesarias para no
-sueprar los límites de velocidad y aceleración.
+superar los límites de velocidad y aceleración.
 
 \begin{figure}[!t]
  \centering
@@ -987,7 +993,9 @@ sueprar los límites de velocidad y aceleración.
 \end{figure}
 
 La consigna de posición entregada al controlador, resultado del bloaque de Matlab 
-se observa en la fig. \ref{fig:consigna_pos}.
+se observa en la fig. \ref{fig:consigna_pos}. En esta se observan como al iniciar y
+al finalizar el desplazamiento se describen dos parábolas debido al limite de 
+aceleración y se forma una rampa en el centro por la limitación de la velocidad.
 \begin{figure}[!t]
  \centering
   \includegraphics[width=2.5in]{consigna_posicion.jpeg}
@@ -995,8 +1003,8 @@ se observa en la fig. \ref{fig:consigna_pos}.
   \label{fig:consigna_pos}
 \end{figure}
 
-Por ultimo en la fig.\ref{fig:atenuaciona} se muestran los resultados de la aceleración
-los que cumplen con las condiciones demandadas y en la fig. \ref{fig:atenuacionv} se 
+Por último en la fig.\ref{fig:atenuaciona} se observa la aceleración al describir 
+la trayectoria anterior, cumpliendo con las condiciones demandadas y en la fig. \ref{fig:atenuacionv} se 
 muestran los resultados para la velocidad. Esta pertenece al sistema de izaje.
 
 \begin{figure}[!t]
@@ -1140,97 +1148,7 @@ Mecanismo de izaje
   k_d &= (2 \xi {\omega}_n - P_1) M_h - b_h
 \end{align}
 
-\subsection{Resultados del Controlador}
-\label{sec:rescontrolador}
-Sobre cada uno de los siguientes controladores se realizaron pruebas que
-entregaron los resultados que se muestran a continuación:
-\begin{itemize}
- \item Traslación del Trolley (Ver Fig.\ref{fig:testx}).
- La respuesta de este controlador a un escalón unitario se puede
- observar en la Fig.\ref{fig:resx}
- \item Izaje de la carga(Ver Fig.\ref{fig:testy}).
- El controlador arrojo los resultados que se observan en la Fig.\ref{fig:resy}. 
- Donde se puede ver un descenso de la carga en los primero instantes debido a la 
- acción del peso.
- \item Izage de la carga con Compensación(Ver Fig.\ref{fig:testyComp}).
- En la Fig.\ref{fig:resyComp} se presentan los resultados al agregar al
- controlador la compensación por el peso de la carga. Se pueden observar mejores
- resultados debidos a este cambio. Consiguiendo así que no haya un descenso de la
- carga cuando el sistema automático toma el control.
-\end{itemize}
 
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Test_x.jpeg}
-  \caption{Modelo Simulink del Controlador de traslación en el eje X}
-  \label{fig:testx}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Test_x_posicion.jpeg}
-  \caption{Respuesta del sistema a un escalón en el eje X}
-  \label{fig:resx}
-\end{figure}
-
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Test_y.jpeg}
-  \caption{Modelo Simulink del controlador de izaje en el eje Y}
-  \label{fig:testy}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Test_y_posicion.jpeg}
-  \caption{Respuesta del sistema a un escalón en el eje Y}
-  \label{fig:resy}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Controlador_precarga.jpeg}
-  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga}
-  \label{fig:testyComp}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{Controlador_prec_res.jpeg}
-  \caption{Respuesta del sistema a un escalón en el eje Y con precarga}
-  \label{fig:resyComp}
-\end{figure}
-
-A continuación se mostrara la comparación de la consigna de posición en escalón con
-la consigna de posición cuya pendiente permite cumplir con las consignas de velocidad
-y aceleración máxima y con la posición de la carga. Se puede ver el estiramiento del
-cable en la gráfica.
-\begin{itemize}
- \item Traslación en el eje x fig. \ref{fig:consposxxl}.
- 
- La consigna dada es equivalente a la que envía la máquina de estados. Se observa
- el movimiento de péndulo de la carga.
- \item Izaje en el eje y fig.\ref{fig:consposyyl}.
- 
-  La consigna dada es equivalente a la que envía la máquina de estados. Se puede 
-  observar el estiramiento del cable.
-\end{itemize}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{consx_posx_xl.jpeg}
-  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x}
-  \label{fig:consposxxl}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
-  \includegraphics[width=2.5in]{consy_posy_yl.jpeg}
-  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y}
-  \label{fig:consposyyl}
-\end{figure}
 
 \subsection{Parada de emergencia}
 Sistemas de gran envergadura presentan frenos mecánicos para no estar forzando el motor
@@ -1389,17 +1307,17 @@ Para poder realizar la máquina se realizaron tres versiones hasta poder obtener
 resultado final. A continuación se presenta una breve descripción de las mismas.
 
 \begin{itemize}
- \item En la primera versión se busco que la máquina fuera capaz de carga la carga en 
+ \item En la primera versión se busco que la máquina fuera capaz de ubicar la carga en 
  el barco. Lo que debía realizar luego de salir del estado manual (en el que el operario
  toma la carga) es ir a una posición conocida y segura, para a partir de ese momento 
  comenzar a avanzar, desde este punto hasta el punto más alto permitido. A partir de 
- este momento se comienza a trasladar el carro en el eje x, hasta su posición final en el 
+ este momento se comienza a trasladar el carro en el eje $x$, hasta su posición final en el 
  eje x, y por ultimo comienza su descenso hasta la posición final en el eje y. El ultimo estado
  era nuevamente manual, donde el operario debería dejar la carga.
  
  \item La segunda versión de la máquina de estados tomaba lo realizado en la primera versión 
  pero además agregaba un grupo de estados que representaban el camino de regreso, ascenso el el
- eje y, traslación en el eje x y descenso hasta el muelle. El problema general se concibe de
+ eje y, traslación en el eje $x$ y descenso hasta el muelle. El problema general se concibe de
  manera que la grúa siempre va a realizar un ciclo completo, ida hacia el barco y regreso al muelle. 
  
  \item La tercer y ultima versión hasta el momento se le agregan las señales de emergencia en las 
@@ -1493,8 +1411,8 @@ automático, este responde de la siguiente manera:
 	  \path [line] (return) -- node {Away} (emergency);
 	  \path [line] (descendHome) -- node {Away} (emergency);
 	  %Cierre del bucle
-	  \path (end) edge[bend left=120,looseness=2] node[fill=white] {Manual} (init);
-	  \path (emergency) edge[bend right=90,looseness=2] node[fill=white] {Manual} (init);
+	  \path [line] (end) edge[bend left=120,looseness=2] node[fill=white] {Manual} (init);
+	  \path [line] (emergency) edge[bend right=90,looseness=2] node[fill=white] {Resolv} (init);
       \end{tikzpicture}
   %}
     \caption{Diagrama de flujo del controlador supervisor}
@@ -1525,24 +1443,128 @@ debe ingresar.
  
 \end{itemize}
 
-\subsection{Presentación de resultados}
+\section{Resultados}
 
 El trabajo se dividió de manera de ir trabajando en la máquina de estado y en el
-control de los motores de forma independiente. De esta forma pudimos avanzar 
-en paralelo. A continuación se presentan los resultados completos, es importante 
-marcar que las condiciones iniciales en estas demostraciones son las explicadas en
-la sección \ref{sec:condiniciales}.
+control de los motores de forma independiente. De esta manera pudimos avanzar 
+en paralelo en el desarrollo de ambos sistemas.
+
+\subsection{Respuesta a un escalón unitario}
+\label{sec:rescontrolador}
+Para comprobar el correcto funcionamiento de los controladores se realizaron
+ensayos con consignas en escalón. Los resultados se presentan a continuación:
+\begin{itemize}
+ \item Traslación del Trolley (Ver Fig.\ref{fig:testx}).
+ La respuesta de este controlador a un escalón unitario se puede
+ observar en la Fig.\ref{fig:resx}
+ \item Izaje de la carga(Ver Fig.\ref{fig:testy}).
+ El controlador ante una consigna en escalón arrojo los resultados que se 
+ observan en la Fig.\ref{fig:resy}. 
+ Donde se puede ver un descenso de la carga en los primero instantes debido a la 
+ acción del peso.
+ \item Izaje de la carga con Compensación(Ver Fig.\ref{fig:testyComp}).
+ En la Fig.\ref{fig:resyComp} se presentan los resultados al agregar al
+ controlador la compensación por el peso de la carga. Se pueden observar mejores
+ resultados debidos a este cambio. Consiguiendo así que no haya un descenso de la
+ carga cuando el sistema automático toma el control.
+\end{itemize}
+
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Test_x.jpeg}
+  \caption{Modelo Simulink del Controlador de traslación en el eje X}
+  \label{fig:testx}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Test_x_posicion.jpeg}
+  \caption{Respuesta del sistema a un escalón en el eje X}
+  \label{fig:resx}
+\end{figure}
+
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Test_y.jpeg}
+  \caption{Modelo Simulink del controlador de izaje en el eje Y}
+  \label{fig:testy}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Test_y_posicion.jpeg}
+  \caption{Respuesta del sistema a un escalón en el eje Y}
+  \label{fig:resy}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Controlador_precarga.jpeg}
+  \caption{Modelo Simulink del controlador de izaje en el eje Y con precarga}
+  \label{fig:testyComp}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{Controlador_prec_res.jpeg}
+  \caption{Respuesta del sistema a un escalón en el eje Y con precarga}
+  \label{fig:resyComp}
+\end{figure}
+
+
+\subsection{Respuesta con límites de velocidad y aceleración}
+Si bien las consignas que la maquina de estados envía al controlador pueden ser representadas
+por escalones, se debe cumplir con los límites de velocidad y aceleración del sistema.
+Por esta razón, se desea saber como responde el sistema de control ante una consigna en 
+escalón que pasa por el sistema de límites de velocidad y aceleración presentados en la 
+sección \ref{sec:limites}.
+
+
+\begin{itemize}
+ \item Traslación en el eje $X$. Ver Fig.\ref{fig:consposxxl}.
+ 
+ La máquina de estados enviá una consigna en escalón que el limitador de velocidad y 
+ aceleración convierte en una curva. Se observa como la carga sigue a la consigna y el
+ movimiento de péndulo de esta.
+ \item Izaje en el eje $Y$. Ver Fig.\ref{fig:consposyyl}.
+ 
+  Nuevamente, la consigna en escalón de la maquina de estados al pasar por el limitador de 
+  velocidad y aceleración se convierte en una curva. Esta es seguida por el controlador 
+  y se puede observar, también, el estiramiento sufrido por el cable.
+\end{itemize}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consx_posx_xl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje x}
+  \label{fig:consposxxl}
+\end{figure}
+
+\begin{figure}[!t]
+ \centering
+  \includegraphics[width=2.5in]{consy_posy_yl.jpeg}
+  \caption{Respuesta del sistema y la carga a una perturbación en escalón eje y}
+  \label{fig:consposyyl}
+\end{figure}
+
+
+\subsection{Control supervisor de la máquina de estados}
+A continuación, se presentan los resultados del trabajo conjunto de la maquina de estados
+y los controladores de la traslación e izaje. Es importante marcar que las condiciones 
+iniciales en estas demostraciones son las explicadas en la sección \ref{sec:condiniciales}.
 
 \begin{itemize}
  \item Para comenzar la presentación de resultados se muestra en la Fig. \ref{fig:idageneral}
  la respuesta del sistema a un ciclo de ida hacia el barco. Se intenta mostrar con esta imagen
  el sistema de forma global. Se observan las señales enviadas desde la máquina de estados, 
- la respuesta del sistema, asi como también el gráfico descripto por la carga en su camino
+ la respuesta del sistema, así como también el gráfico descripto por la carga en su camino
  hacia el barco en la parte inferior izquierda. También se muestran los switch que representan
- las señasles que puede enviarle el operario a la máquina.
+ las señales que puede enviarle el operario a la máquina.
 
 \item En la Fig. \ref{fig:consignasyrespuestasy} Se puede observar la consigna en 
-escalon enviada desde la máquina de estados, la respuesta de los controladores de 
+escalón enviada desde la máquina de estados, la respuesta de los controladores de 
 los motores a la consigna de posición atenuada para estar dentro de los límites de 
 velocidad y aceleración como se ve en la figura \ref{fig:atenuaciona} para el izaje
 de la carga, mientras que en la Fig. \ref{fig:consignasyrespuestasx} se muestra 
@@ -1583,10 +1605,10 @@ la respuesta en la traslación.
   \label{fig:idavueltageneral}
 \end{figure}
 
-\subsection{Próximas versiones de la máquina de estados}
+\section{Posibles Mejoras}
 
 Hasta ahora tenemos una versión de la máquina de estados que es capaz de esperar 
-que el operario tome la carga y automaticamente la lleve al barco y volver desde el
+que el operario tome la carga y automáticamente la lleve al barco y volver desde el
 mismo. Se plantean tres mejoras a este modelo que se pueden sumar a nuestro desarrollo
 puesto que se han dejado las variables para ello.
 
@@ -1594,12 +1616,12 @@ puesto que se han dejado las variables para ello.
  \item inteligencia al estado automático, esto es conocer la posición final de traslación
  teniendo en cuenta dos situaciones:
  \begin{itemize}
-  \item Carga secuencial en el eje x, cargar en la columna 1, luego la 2 y asi sucesivamente.
-  \item Carga completamente la columna 1 y luego completamente la 2 y asi sucesivamente.
+  \item Carga secuencial en el eje x, cargar en la columna 1, luego la 2 y así sucesivamente.
+  \item Carga completamente la columna 1 y luego completamente la 2 y así sucesivamente.
  \end{itemize}
  
- \item Realizar trayectorias curvas que le permitrían al operario que la carga y la descarga 
- fuera más rapidamente.
+ \item Realizar trayectorias curvas que le permitan al operario que la carga y la descarga 
+ se realicen más rápidamente.
  
  \item Detección de carga, discriminando si estamos cargando o descargando, siendo capaces
  de esta manera de avanzar más rápido si no hay carga.
